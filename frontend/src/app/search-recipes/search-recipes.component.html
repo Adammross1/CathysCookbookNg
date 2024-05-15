@@ -1,12 +1,16 @@
 @if ({recipeNames: recipeNamesSignal()}; as data) {
 <form (submit)="searchRecipe(recipeSearchParam)">
-  <label>Search Recipe</label>
-  <input type="text" name="recipe" [(ngModel)]="recipeSearchParam">
-  <button type="submit">Submit</button>
+  <h1>Search Recipes</h1>
+  <div class="align-button-over-input">
+    <input type="text" name="recipe" [(ngModel)]="recipeSearchParam">
+    <button type="submit">
+      <img src="../../assets/search.svg">
+    </button>
+  </div>
 </form>
 <ul>
   @for (recipeName of data.recipeNames; track recipeName) {
-  <li>{{ recipeName }}</li>
+    <a href=""><li>{{ recipeName }}</li></a>
   }
 </ul>
 }
