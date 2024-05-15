@@ -1,0 +1,41 @@
+@import "../core/scss/variables";
+
+form {
+  display: flex;
+  flex-direction: column;
+  h1 {
+    text-align: center;
+    color: $dark-purple;
+  }
+  .align-button-over-input {
+    display: flex;
+    flex-direction: row;
+    input {
+      padding: 0.7rem;
+      width: 20rem;
+      border-radius: 1rem;
+      border: 2px solid #ccc;
+      font-size: 1rem;
+    }
+    button {
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #eee;
+      border: 2px solid #ccc;
+      border-radius: 1rem;
+      margin-left: -3rem;
+      transition: background-color 300ms ease;
+      cursor: pointer;
+      &:hover {
+        background-color: #ddd;
+      }
+      img {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+}

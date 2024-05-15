@@ -1,6 +1,6 @@
 @if ({recipeNames: recipeNamesSignal()}; as data) {
 <form (submit)="searchRecipe(recipeSearchParam)">
-  <h1>Search Recipes</h1>
+  <h1>Online Search</h1>
   <div class="align-button-over-input">
     <input type="text" name="recipe" [(ngModel)]="recipeSearchParam">
     <button type="submit">

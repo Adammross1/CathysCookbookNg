@@ -125,3 +125,4 @@ C:\Users\15204\Desktop\WebProjects\CathysCookbookNg\backend\CathysCookbookAPI\bi
 C:\Users\15204\Desktop\WebProjects\CathysCookbookNg\backend\CathysCookbookAPI\bin\Debug\net8.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\15204\Desktop\WebProjects\CathysCookbookNg\backend\CathysCookbookAPI\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\15204\Desktop\WebProjects\CathysCookbookNg\backend\CathysCookbookAPI\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
+C:\Users\15204\Desktop\WebProjects\CathysCookbookNg\backend\CathysCookbookAPI\obj\Debug\net8.0\CathysCookbookAPI.sourcelink.json

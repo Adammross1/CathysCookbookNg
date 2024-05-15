@@ -1,0 +1,15 @@
+@import "../core/scss/variables";
+
+.navbar {
+  width: 100vw;
+  background-color: $light-purple;
+  ul {
+    display: flex;
+    flex-direction: row;
+    li {
+      list-style: none;
+      padding: 1rem;
+    }
+  }
+
+}
