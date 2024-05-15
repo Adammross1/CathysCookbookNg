@@ -1,0 +1,11 @@
+<form (submit)="getRecipe(recipeNameInput.value)">
+  <label for="recipeIdInput">Search Recipe</label><br />
+  <input #recipeNameInput />
+  <button type="submit">Submit</button>
+</form>
+
+<ul>
+  @for (recipeName of recipeNames$ | async; track recipeName) {
+  <li>{{ recipeName }}</li>
+  }
+</ul>

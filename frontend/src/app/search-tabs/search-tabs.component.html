@@ -1,0 +1,18 @@
+<button
+class="search-tab"
+(click)="selectTab('MealDB')"
+[ngClass]="{ selected: 'MealDB' === (selectedTab$ | async) }"
+>
+Online Search
+</button>
+<button
+class="search-tab"
+(click)="selectTab('MyDB')"
+[ngClass]="{ selected: 'MyDB' === (selectedTab$ | async) }"
+>
+My Recipes
+</button>
+<div class="search-container">
+  @switch (selectedTab$ | async) { @case('MealDB'){ <app-search-recipes />}
+  @case('MyDB'){ My recipes will be here } }
+</div>

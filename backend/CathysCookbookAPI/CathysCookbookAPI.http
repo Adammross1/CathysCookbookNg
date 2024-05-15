@@ -1,0 +1,6 @@
+@CathysCookbookAPI_HostAddress = http://localhost:5202
+
+GET {{CathysCookbookAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
