@@ -8,17 +8,20 @@ import { Observable, forkJoin } from 'rxjs';
 export class MealDBRecipesService {
   private http = inject(HttpClient);
 
-  public fetchDetails(recipeId: string): Observable<any> {
-    // Make the HTTP request and return the Observable
+  public fetchDetails(recipeIds: string[]) {
+    let apiRequests = recipeIds.map((recipe) => {
       return this.http.get<any>(
-        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`
-      )
+        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipe}`
+      );
+    });
+
+    return forkJoin(apiRequests);
   }
 
-  public fetchName(recipeName: string): Observable<any> {
+  public fetchName(recipeSearchParam: string) {
     // Make the HTTP request and return the Observable
-      return this.http.get<any>(
-        `https://www.themealdb.com/api/json/v1/1/search.php?s=${recipeName}`
-      )
+    return this.http.get<any>(
+      `https://www.themealdb.com/api/json/v1/1/search.php?s=${recipeSearchParam}`
+    );
   }
 }

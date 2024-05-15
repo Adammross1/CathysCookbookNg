@@ -1,49 +1,35 @@
-import { Component, inject } from '@angular/core';
-import { Observable, map, of } from 'rxjs';
+import { Component, inject, signal } from '@angular/core';
+import { map } from 'rxjs';
 import { MealDBRecipesService } from '../core/services/mealdb-recipes.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-search-recipes',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './search-recipes.component.html',
-  styleUrl: './search-recipes.component.scss'
+  styleUrl: './search-recipes.component.scss',
 })
 export class SearchRecipesComponent {
   title = 'training';
-  protected recipe$: Observable<{strMeal: string, ingredients: string[]}[]> = of([]);
-  protected recipeNames$: Observable<string> = of('');
-  
-  private recipesService = inject(MealDBRecipesService);
-
-  getRecipeDetails = (recipeIdValue: string) => {
-    this.recipe$ = this.recipesService.fetchDetails(recipeIdValue).pipe(
-      map(data => {
-        const recipes = data.map((response: { meals: any[]; }) => response.meals[0]);
-        return recipes.map((recipe: { strMeal: any; }) => ({
-          strMeal: recipe.strMeal,
-          ingredients: this.getIngredients(recipe)
-        }));
-      }),
-    );
-  }
-
-  getIngredients = (recipe: any): string[] => {
-    const ingredients: string[] = [];
-    for (let i = 1; i <= 20; i++) {
-      const ingredient = recipe[`strIngredient${i}`];
-      const measure = recipe[`strMeasure${i}`];
-      if (ingredient && measure) {
-        ingredients.push(`${ingredient} - ${measure}`);
-      } else if (ingredient) {
-        ingredients.push(ingredient);
-      }
-    }
-    return ingredients;
-  }
-
-  getRecipe = (recipeNameValue: string) => {
-    this.recipeNames$ = this.recipesService.fetchName(recipeNameValue);
-  }
+  private mealDBService = inject(MealDBRecipesService);
+  protected recipeNamesSignal = signal<string[]>([]);
+  protected recipeSearchParam = '';
+  protected searchRecipe = (searchParam: string) => {
+    this.mealDBService
+      .fetchName(searchParam)
+      .pipe(
+        map((data) => {
+          const meals = data.meals;
+          if (!meals) {
+            return ['sorry, no results'];
+          }
+          return meals.map((meal: { strMeal: any }) => meal.strMeal);
+        })
+      )
+      .subscribe((recipes) => {
+        this.recipeNamesSignal.set(recipes);
+      });
+  };
 }

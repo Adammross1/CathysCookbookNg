@@ -1,11 +1,12 @@
-<form (submit)="getRecipe(recipeNameInput.value)">
-  <label for="recipeIdInput">Search Recipe</label><br />
-  <input #recipeNameInput />
+@if ({recipeNames: recipeNamesSignal()}; as data) {
+<form (submit)="searchRecipe(recipeSearchParam)">
+  <label>Search Recipe</label>
+  <input type="text" name="recipe" [(ngModel)]="recipeSearchParam">
   <button type="submit">Submit</button>
 </form>
-
 <ul>
-  @for (recipeName of recipeNames$ | async; track recipeName) {
+  @for (recipeName of data.recipeNames; track recipeName) {
   <li>{{ recipeName }}</li>
   }
 </ul>
+}
