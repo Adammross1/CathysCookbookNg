@@ -2,14 +2,58 @@
 
 .navbar {
   width: 100vw;
-  background-color: $light-purple;
-  ul {
-    display: flex;
-    flex-direction: row;
-    li {
-      list-style: none;
-      padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to right, #7d5bb1, #bbadff, #cbb2fe, #e0c3fc);
+  a {
+    cursor: pointer;
+    img {
+      margin: 0.5rem 1rem;
+      height: 6rem;
+      width: 6rem;
+      transition: transform 300ms ease;
+    }
+    :hover {
+      transform: scale(1.05);
     }
   }
 
+  ul {
+    display: flex;
+    flex-direction: row;
+    margin-right: 3rem;
+    li {
+      font-family: $serif-font;
+      list-style: none;
+      padding: 1rem 1.5rem;
+      border-radius: 0.7rem;
+      color: #fff;
+      font-size: 1.4rem;
+      &:hover {
+        -webkit-mask-image: linear-gradient(
+          -75deg,
+          rgba(0, 0, 0, 0.6) 30%,
+          #000 50%,
+          rgba(0, 0, 0, 0.6) 70%
+        );
+        -webkit-mask-size: 200%;
+        animation: shine 2s infinite;
+      }
+    }
+    a {
+      cursor: pointer;
+    }
+  }
+}
+
+@-webkit-keyframes shine {
+  from {
+    -webkit-mask-position: 150%;
+  }
+
+  to {
+    -webkit-mask-position: -50%;
+  }
 }

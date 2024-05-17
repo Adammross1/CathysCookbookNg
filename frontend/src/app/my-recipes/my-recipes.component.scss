@@ -4,8 +4,9 @@ form {
   display: flex;
   flex-direction: column;
   h1 {
+    font-family: $serif-font;
     text-align: center;
-    color: $dark-purple;
+    color: #FFF;
   }
   .align-button-over-input {
     display: flex;
