@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 export class SearchRecipesComponent {
   title = 'training';
   private mealDBService = inject(MealDBRecipesService);
-  protected recipeNamesSignal = signal<string[]>([]);
+  protected recipesSignal = signal<string[]>([]);
   protected recipeSearchParam = '';
   protected searchRecipe = (searchParam: string) => {
     this.mealDBService
@@ -25,11 +25,28 @@ export class SearchRecipesComponent {
           if (!meals) {
             return ['sorry, no results'];
           }
-          return meals.map((meal: { strMeal: any }) => meal.strMeal);
+          return meals.map((meal: any) => {
+            const ingredients = [];
+            for (let i = 1; i <= 20; i++) {
+              const ingredient = meal[`strIngredient${i}`];
+              if (ingredient) {
+                ingredients.push(ingredient);
+              } else {
+                break;
+              }
+            }
+            return {
+              name: meal.strMeal,
+              category: meal.strCategory,
+              area: meal.strArea,
+              ingredients: ingredients,
+            };
+          });
         })
       )
       .subscribe((recipes) => {
-        this.recipeNamesSignal.set(recipes);
+        this.recipesSignal.set(recipes);
       });
+      console.log(this.recipesSignal())
   };
 }

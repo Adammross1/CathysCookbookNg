@@ -1,16 +1,22 @@
-@if ({recipeNames: recipeNamesSignal()}; as data) {
-<form (submit)="searchRecipe(recipeSearchParam)">
-  <h1>Online Search</h1>
-  <div class="align-button-over-input">
-    <input type="text" name="recipe" [(ngModel)]="recipeSearchParam">
-    <button type="submit">
-      <img src="../../assets/search.svg">
-    </button>
-  </div>
-</form>
-<ul>
-  @for (recipeName of data.recipeNames; track recipeName) {
-    <a href=""><li>{{ recipeName }}</li></a>
-  }
-</ul>
+@if ({recipes: recipesSignal()}; as data) {
+<div class="search-container">
+  <form (submit)="searchRecipe(recipeSearchParam)">
+    <h1>Online Search</h1>
+    <div class="align-button-over-input">
+      <input type="text" name="recipe" [(ngModel)]="recipeSearchParam" />
+      <button type="submit">
+        <img src="../../assets/search.svg" />
+      </button>
+    </div>
+  </form>
+</div>
+<div class="results-container">
+  <ul>
+    @for (recipe of data.recipes; track recipe) {
+    <a href=""
+      ><li>{{ recipe }}</li></a
+    >
+    }
+  </ul>
+</div>
 }

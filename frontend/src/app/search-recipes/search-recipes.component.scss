@@ -1,64 +1,82 @@
 @import "../core/scss/variables";
 
-form {
+.search-container {
+  background-color: $light-purple;
+  border: 1px solid $light-purple;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
   display: flex;
-  flex-direction: column;
-  h1 {
-    font-family: $serif-font;
-    text-align: center;
-    color: #fff;
-  }
-  .align-button-over-input {
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  form {
     display: flex;
-    flex-direction: row;
-    input {
-      padding: 0.7rem;
-      width: 20rem;
-      border-radius: 1rem;
-      border: 2px solid #ccc;
-      font-size: 1rem;
+    flex-direction: column;
+    h1 {
+      font-family: $serif-font;
+      text-align: center;
+      color: #fff;
     }
-    button {
-      width: 3rem;
-      height: 3rem;
+    .align-button-over-input {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #eee;
-      border: 2px solid #ccc;
-      border-radius: 1rem;
-      margin-left: -3rem;
-      transition: background-color 300ms ease;
-      cursor: pointer;
-      &:hover {
-        background-color: #ddd;
+      flex-direction: row;
+      input {
+        padding: 0.7rem;
+        width: 20rem;
+        border-radius: 1rem;
+        border: 2px solid #ccc;
+        font-size: 1rem;
       }
-      img {
-        width: 1.5rem;
-        height: 1.5rem;
+      button {
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #eee;
+        border: 2px solid #ccc;
+        border-radius: 1rem;
+        margin-left: -3rem;
+        transition: background-color 300ms ease;
+        cursor: pointer;
+        &:hover {
+          background-color: #ddd;
+        }
+        img {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
       }
     }
   }
 }
+.results-container {
+  background-color: #FFF;
+  border: 1px solid $light-purple;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  min-height: 10rem;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 2rem;
 
-ul {
-  margin-left: -2.4rem;
-  a {
-    text-decoration: none;
-    cursor: pointer;
-    li {
-      text-align: center;
-      align-items: center;
-      padding: 0.5rem 1rem;
-      list-style: none;
-      border: 1px solid $dark-purple;
-      background-color: #fff;
-      color: $dark-purple;
-      transition: font-size 300ms ease;
-      height: 1.7rem;
-    }
-    :hover {
-      font-size: 1.1rem;
+  ul {
+    margin-left: -2.4rem;
+    a {
+      text-decoration: none;
+      cursor: pointer;
+      li {
+        text-align: left;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        list-style: none;
+        color: $dark-purple;
+        transition: color 300ms ease;
+      }
+      :hover {
+        color: $light-purple;
+      }
     }
   }
 }
