@@ -1,42 +1,104 @@
 @import "../core/scss/variables";
 
-form {
+.search-container {
+  background-color: $light-purple;
+  border: 1px solid $light-purple;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
   display: flex;
-  flex-direction: column;
-  h1 {
-    font-family: $serif-font;
-    text-align: center;
-    color: #FFF;
-  }
-  .align-button-over-input {
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2rem;
+  form {
     display: flex;
-    flex-direction: row;
-    input {
-      padding: 0.7rem;
-      width: 20rem;
-      border-radius: 1rem;
-      border: 2px solid #ccc;
-      font-size: 1rem;
+    flex-direction: column;
+    h1 {
+      font-family: $serif-font;
+      text-align: center;
+      color: #fff;
     }
-    button {
-      width: 3rem;
-      height: 3rem;
+    .align-button-over-input {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #eee;
-      border: 2px solid #ccc;
-      border-radius: 1rem;
-      margin-left: -3rem;
-      transition: background-color 300ms ease;
+      flex-direction: row;
+      input {
+        padding: 0.7rem;
+        width: 20rem;
+        border-radius: 1rem;
+        border: 2px solid #ccc;
+        font-size: 1rem;
+      }
+      button {
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #eee;
+        border: 2px solid #ccc;
+        border-radius: 1rem;
+        margin-left: -3rem;
+        transition: background-color 300ms ease;
+        cursor: pointer;
+        &:hover {
+          background-color: #ddd;
+        }
+        img {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+      }
+    }
+  }
+}
+.results-container {
+  background-color: #fff;
+  border: 1px solid $light-purple;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  min-height: 10rem;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 2rem;
+
+  .results-scroll {
+    max-height: 20rem;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: $dark-purple $background-purple;
+    a {
+      text-decoration: none;
       cursor: pointer;
-      &:hover {
-        background-color: #ddd;
+      div {
+        text-align: left;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        list-style: none;
+        color: $dark-purple;
+        font-family: $serif-font;
+        font-size: 1.5rem;
+        transition: color 300ms ease;
+        .pill {
+          border: 1px solid $dark-purple;
+          border-radius: 3rem;
+          background-color: $background-purple;
+          color: $dark-purple;
+          padding: 0.3rem 0.8rem;
+          margin-left: 1rem;
+          font-family: $sans-serif-font;
+          font-size: 1rem;
+        }
       }
-      img {
-        width: 1.5rem;
-        height: 1.5rem;
+      :hover {
+        color: $light-purple;
       }
+    }
+    p {
+      color: $light-purple;
+      padding-left: 2rem;
+      max-width: 80%;
     }
   }
 }

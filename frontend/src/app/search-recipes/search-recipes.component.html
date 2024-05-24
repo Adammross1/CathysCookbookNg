@@ -11,12 +11,17 @@
   </form>
 </div>
 <div class="results-container">
-  <ul>
-    @for (recipe of data.recipes; track recipe) {
-    <a href=""
-      ><li>{{ recipe }}</li></a
-    >
+  <div class="results-scroll">
+    @for (recipe of data.recipes ; track recipe) {
+    <div>
+      <a href="">{{ recipe.name }}</a>
+      <div>
+        <p class="pill">{{ recipe.category}}</p>
+        <p class="pill">{{ recipe.area }}</p>
+      </div>
+    </div>
+    <p>{{ recipe.ingredients}}</p>
     }
-  </ul>
+  </div>
 </div>
 }

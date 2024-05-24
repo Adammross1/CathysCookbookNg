@@ -1,9 +1,24 @@
-<form>
-  <h1>My Recipes</h1>
-  <div class="align-button-over-input">
-    <input type="text" name="recipe">
-    <button type="submit">
-      <img src="../../assets/search.svg">
-    </button>
+<div class="search-container">
+  <form>
+    <h1>My Recipes</h1>
+    <div class="align-button-over-input">
+      <input type="text" name="recipe" />
+      <button type="submit">
+        <img src="../../assets/search.svg" />
+      </button>
+    </div>
+  </form>
+</div>
+<div class="results-container">
+  <div class="results-scroll">
+    <!-- @for (recipe of data.recipes ; track recipe) {
+      <a href="">
+        <div>{{ recipe.name }}
+          <p class="pill">{{ recipe.category}}</p>
+          <p class="pill">{{ recipe.area }}</p>
+        </div>
+      </a>
+      <p>{{ recipe.ingredients}}</p>
+      } -->
   </div>
-</form>
+</div>
