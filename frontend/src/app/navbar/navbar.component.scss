@@ -28,9 +28,13 @@
       font-family: $serif-font;
       list-style: none;
       padding: 1rem 1.5rem;
-      border-radius: 0.7rem;
+    }
+    a {
+      cursor: pointer;
       color: #fff;
+      text-decoration: none;
       font-size: 1.4rem;
+
       &:hover {
         -webkit-mask-image: linear-gradient(
           -75deg,
@@ -41,9 +45,9 @@
         -webkit-mask-size: 200%;
         animation: shine 2s infinite;
       }
-    }
-    a {
-      cursor: pointer;
+      .activebutton {
+        color: $dark-purple;
+      }
     }
   }
 }
