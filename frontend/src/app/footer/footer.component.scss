@@ -1,0 +1,12 @@
+@import "../core/scss/variables";
+
+p {
+    width: 100%;
+    padding: 2rem;
+    margin-top: 10rem;
+    margin-bottom: 0;
+    background-color: $light-purple;
+    color: $dark-purple;
+    text-align: center;
+    align-items: center;
+}

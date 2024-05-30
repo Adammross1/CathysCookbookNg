@@ -38,6 +38,7 @@ export class OnlineRecipeComponent {
             instructions: meal.strInstructions,
             category: meal.strCategory,
             area: meal.strArea,
+            imageUrl: meal.strMealThumb,
           };
         })
       );

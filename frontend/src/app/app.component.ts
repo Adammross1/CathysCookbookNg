@@ -5,6 +5,7 @@ import { SearchTabsComponent } from './search-tabs/search-tabs.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CookbooksComponent } from './cookbooks/cookbooks.component';
 import { MealPrepComponent } from './meal-prep/meal-prep.component';
+import { FooterComponent } from './footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ import { MealPrepComponent } from './meal-prep/meal-prep.component';
     NavbarComponent,
     CookbooksComponent,
     MealPrepComponent,
+    FooterComponent
   ],
 })
 export class AppComponent {
