@@ -1,4 +1,41 @@
+@import "./core/scss/variables";
+
 .center-outlet {
   display: flex;
   justify-content: center;
+}
+
+button {
+  border: none;
+  background-color: #FFF;
+  padding: 2rem 0 0 2rem;
+  img {
+    height: 2rem;
+    width: 2rem;
+    filter: $dark-purple-filter;
+    cursor: pointer;
+  }
+  :hover {
+    animation: backArrow .5s;
+  }
+}
+
+
+
+@keyframes backArrow {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-.5rem);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  70% {
+    transform: translateX(-.5rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

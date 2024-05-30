@@ -1,0 +1,86 @@
+@import "../core/scss/variables";
+
+    .recipe-container {
+        border: 1px solid $dark-purple;
+        border-radius: 1rem;
+        background-color: $background-purple;
+        padding: 2rem;
+        width: 60vw;
+        .header-container {
+            display: flex;
+            align-items: center;
+            h1 {
+                font-family: $serif-font;
+                color: $dark-purple;
+            }
+            div {
+                text-align: left;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding: 0.5rem 1rem;
+                .pill {
+                  border: 1px solid $dark-purple;
+                  border-radius: 3rem;
+                  background-color: $background-purple;
+                  color: $dark-purple;
+                  padding: 0.3rem 0.8rem;
+                  margin-left: 1rem;
+                  font-family: $sans-serif-font;
+                  font-size: 1rem;
+                  text-decoration: none;
+                }
+              }
+        }
+
+        .details-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #FFF;
+            border: 1px solid $light-purple;
+            border-radius: 1rem;
+            padding: 1rem;
+            margin: 0 1rem;
+            max-height: 50vh;
+            .headers {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                width: 100%;
+                text-align: center;
+                .ingredients {
+                    grid-column: 1 / span 1;
+                    font-family: $serif-font;
+                    color: $dark-purple;
+                }
+                .instructions {
+                    grid-column: 2 / span 1;
+                    font-family: $serif-font;
+                    color: $dark-purple;
+                }
+            }
+            .item-container {
+                display: flex;
+                justify-content: space-evenly;
+                .item {
+                    width: 100%;
+                    overflow-y: auto;
+                    scrollbar-color: $dark-purple $background-purple;
+                    scrollbar-width: thin;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    ul {
+                        li {
+                            list-style: none;
+                            color: $light-purple;
+                        }
+                    }
+                    p {
+                        width: 90%;
+                        color: $light-purple;
+                    }
+                }
+            }
+        }
+    }

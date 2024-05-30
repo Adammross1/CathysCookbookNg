@@ -3,11 +3,12 @@ import { OperatorFunction, map } from 'rxjs';
 import { MealDBRecipesService } from '../core/services/mealdb-recipes.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-search-recipes',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink, RouterLinkActive],
   templateUrl: './search-recipes.component.html',
   styleUrl: './search-recipes.component.scss',
 })
@@ -15,7 +16,7 @@ export class SearchRecipesComponent {
   title = 'training';
   private mealDBService = inject(MealDBRecipesService);
   protected recipesSignal = signal<
-    { name: string; category: string; area: string; ingredients: string[] }[]
+    { name: string; category: string; area: string; ingredients: string[]; id: string; }[]
   >([]);
   protected recipeSearchParam = '';
   protected searchRecipe = (searchParam: string) => {
@@ -41,6 +42,7 @@ export class SearchRecipesComponent {
               name: meal.strMeal,
               category: meal.strCategory,
               area: meal.strArea,
+              id: meal.idMeal,
               ingredients: ingredients.join(', '),
             };
           });

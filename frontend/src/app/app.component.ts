@@ -21,5 +21,9 @@ import { MealPrepComponent } from './meal-prep/meal-prep.component';
   ],
 })
 export class AppComponent {
-  title = 'CathysCookbook';
+  title = "Cathy's Cookbook";
+
+  protected back = () => {
+    window.history.back();
+  }
 }

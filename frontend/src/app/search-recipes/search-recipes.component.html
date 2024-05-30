@@ -14,13 +14,18 @@
   <div class="results-scroll">
     @for (recipe of data.recipes ; track recipe) {
     <div>
-      <a href="">{{ recipe.name }}</a>
+      <a
+        [routerLink]="['../recipe/', recipe.id]"
+        routerLinkActive="activebutton"
+        ariaCurrentWhenActive="page"
+        >{{ recipe.name }}</a
+      >
       <div>
-        <p class="pill">{{ recipe.category}}</p>
+        <p class="pill">{{ recipe.category }}</p>
         <p class="pill">{{ recipe.area }}</p>
       </div>
     </div>
-    <p>{{ recipe.ingredients}}</p>
+    <p>{{ recipe.ingredients }}</p>
     }
   </div>
 </div>
