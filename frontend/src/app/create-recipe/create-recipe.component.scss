@@ -9,6 +9,8 @@
   h1 {
     color: $dark-purple;
     padding-bottom: 1rem;
+    font-family: $sans-serif-font;
+
   }
   form {
     display: flex;
@@ -31,6 +33,7 @@
       padding: 0.5rem 1rem;
       border: 1px solid $border-color;
       border-radius: 1rem;
+      font-family: $sans-serif-font;
     }
     textarea {
       margin: 1rem;
@@ -39,6 +42,7 @@
       border-radius: 1rem;
       width: 80%;
       height: 5rem;
+      font-family: $sans-serif-font;
     }
     .remove {
       border: 1px solid #e8403e;
@@ -56,9 +60,9 @@
     }
   }
   .recipe-section {
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
   }
 
   .center-content {
@@ -66,7 +70,30 @@
     justify-content: center;
     button {
       width: fit-content;
-      padding: 0.5rem 0.7rem;
+      padding: 0.7rem 1rem;
+      border: 2px solid $dark-purple;
+      color: $dark-purple;
+      border-radius: 1rem;
+      background-color: #fff;
+      font-family: $serif-font;
+      font-weight: bold;
+      &:hover {
+        background: linear-gradient(to right, #bbadff, #cbb2fe, #e0c3fc);
+        background-size: 300% 300%;
+        animation: gradientAnimation 6s ease infinite;
+      }
     }
+  }
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
