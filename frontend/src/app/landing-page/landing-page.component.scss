@@ -1,0 +1,42 @@
+@import "../core/scss/variables";
+
+.hero-container {
+  position: relative;
+  top: -4.3rem;
+  height: 90vh;
+  overflow: hidden;
+  video {
+    margin-top: -3.5rem;
+  }
+  .img-container {
+    position: absolute;
+    left: 40%;
+    top: 12rem;
+    z-index: 2;
+    img {
+      height: 20rem;
+      width: 20rem;
+    }
+  }
+}
+
+h1 {
+  text-align: center;
+  color: $dark-purple;
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  .divider {
+    border-bottom: 2px solid $dark-purple;
+    margin: 1rem 0 2rem 0;
+    width: 50%;
+  }
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 2rem;
+}

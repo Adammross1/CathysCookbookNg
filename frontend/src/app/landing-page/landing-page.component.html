@@ -1,1 +1,30 @@
+<div class="hero-container">
+  <video autoplay muted loop id="hero-video">
+    <source src="../../assets/video/herovid.mp4" type="video/mp4">
+  </video>
+  <div class="img-container">
+    <img src="../../assets/svg/logoWhite.svg">
+  </div>
+</div>
 
+<h1>EXPLORE CATHY'S COOKBOOK</h1>
+<div>
+  <div class="divider"></div>
+</div>
+
+<div class="card-container">
+  <app-custom-card [imgSrc]="'../../assets/img/ocean.jpg'" [link]="['search']">
+    <span class="title">Search</span>
+    <span class="description">Find new recipes, or search through your own.</span>
+  </app-custom-card>
+
+  <app-custom-card [imgSrc]="'../../assets/img/mountain.jpg'" [link]="['cookbooks']">
+    <span class="title">Cookbooks</span>
+    <span class="description">Create your own recipes.</span>
+  </app-custom-card>
+
+  <app-custom-card [imgSrc]="'../../assets/img/humming-bird.jpg'" [link]="['meal-prep']">
+    <span class="title">Meal Prep</span>
+    <span class="description">Make a plan for this week's meals.</span>
+  </app-custom-card>
+</div>

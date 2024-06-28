@@ -7,27 +7,26 @@
       <p class="pill">{{ data.recipe?.area }}</p>
     </div>
   </div>
+  
   <div class="image-container">
     <img [src]="data.recipe?.imageUrl" />
   </div>
 
-  <div class="details-container">
-    <div class="headers">
-      <h3 class="ingredients">Ingredients</h3>
-      <h3 class="instructions">Instructions</h3>
+  <div class="instructions-container">
+    <h3 class="instructions">Instructions</h3>
+    <div class="item">
+      <p>{{ data.recipe?.instructions }}</p>
     </div>
+  </div>
 
-    <div class="item-container">
-      <div class="item">
-        <ul>
-          @for (ingredient of data.recipe?.ingredients; track ingredient) {
-          <li>{{ ingredient }}</li>
-          }
-        </ul>
-      </div>
-      <div class="item">
-        <p>{{ data.recipe?.instructions }}</p>
-      </div>
+  <div class="ingredients-container">
+    <h3 class="ingredients">Ingredients</h3>
+    <div class="item">
+      <ul>
+        @for (ingredient of data.recipe?.ingredients; track ingredient) {
+        <li>{{ ingredient }}</li>
+        }
+      </ul>
     </div>
   </div>
 </div>
