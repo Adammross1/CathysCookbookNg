@@ -20,5 +20,10 @@
       </a>
       <p>{{ recipe.ingredients}}</p>
       } -->
+      @if ({ingredients: ingredients$ | async}; as data) {
+        @for (ingredient of data.ingredients; track ingredient) {
+          <p>{{ingredient}}</p>
+        }
+      }
   </div>
 </div>
