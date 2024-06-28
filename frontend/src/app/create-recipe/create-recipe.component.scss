@@ -17,6 +17,7 @@
     flex-direction: column;
   }
   label {
+    margin-top: 2rem;
     color: $light-heading;
     font-size: 1.5rem;
   }
@@ -25,6 +26,7 @@
     display: flex;
     align-items: center;
     label {
+      margin: 0;
       color: $light-heading;
       font-size: 1.5rem;
     }
@@ -60,7 +62,6 @@
     }
   }
   .recipe-section {
-    padding: 1rem;
     display: flex;
     flex-direction: column;
   }
