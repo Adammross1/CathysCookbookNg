@@ -10,7 +10,13 @@ namespace CathysCookbookAPI.Models
         }
 
         public IEnumerable<Ingredient> Ingredients => _cookbookContext.Ingredients;
+        public IEnumerable<Recipe> Recipes => _cookbookContext.Recipes;
+        public IEnumerable<RecipeDetail> RecipeDetails => _cookbookContext.RecipeDetails;
 
-        public IEnumerable<Recipe> Recipes => throw new NotImplementedException();
+        public void AddRecipeDetail(RecipeDetail recipeDetail)
+        {
+            _cookbookContext.RecipeDetails.Add(recipeDetail);
+            _cookbookContext.SaveChanges();
+        }
     }
 }
