@@ -4,7 +4,7 @@
     <div class="align-button-over-input">
       <input type="text" name="recipe" />
       <button type="submit">
-        <img src="../../assets/search.svg" />
+        <img src="../../assets/svg/search.svg" />
       </button>
     </div>
   </form>
@@ -20,10 +20,10 @@
       </a>
       <p>{{ recipe.ingredients}}</p>
       } -->
-      @if ({ingredients: ingredients$ | async}; as data) {
-        @for (ingredient of data.ingredients; track ingredient) {
-          <p>{{ingredient}}</p>
-        }
-      }
+    @if ({ingredients: ingredients$ | async}; as data) {
+    @for (ingredient of data.ingredients; track ingredient) {
+    <p>{{ingredient}}</p>
+    }
+    }
   </div>
 </div>
