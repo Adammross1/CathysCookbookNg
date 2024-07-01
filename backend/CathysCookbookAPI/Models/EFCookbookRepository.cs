@@ -10,5 +10,7 @@ namespace CathysCookbookAPI.Models
         }
 
         public IEnumerable<Ingredient> Ingredients => _cookbookContext.Ingredients;
+
+        public IEnumerable<Recipe> Recipes => throw new NotImplementedException();
     }
 }

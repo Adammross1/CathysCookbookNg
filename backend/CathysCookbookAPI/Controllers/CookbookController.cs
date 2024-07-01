@@ -18,9 +18,9 @@ namespace CathysCookbookAPI.Controllers
         [HttpGet]
         public IEnumerable<Ingredient> Get() 
         {
-            var cookbookData = _cookbookRepository.Ingredients.ToArray();
+            var ingredients = _cookbookRepository.Ingredients.ToArray();
 
-            return cookbookData;
+            return ingredients;
         }
     }
 }
