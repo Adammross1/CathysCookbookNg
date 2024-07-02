@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,29 +8,36 @@ import { Injectable, inject } from '@angular/core';
 export class CcRecipesService {
   private http = inject(HttpClient);
 
-  public getIngredients() {
-    return this.http.get<any>(`http://localhost:5202/api/Ingredients`);
+  private apiUrl = 'http://localhost:5202/api';
+
+  // Existing methods for fetching data
+  public getIngredients(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/Ingredients`);
   }
 
-  public getRecipeDetails() {
-    return this.http.get<any>(`http://localhost:5202/api/RecipeDetails`);
+  public getRecipeDetails(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/RecipeDetails`);
   }
 
-  public getRecipeDetailsById(recipeId: number) {
-    return this.http.get<any>(
-      `http://localhost:5202/api/RecipeDetails/${recipeId}`
-    );
+  public getRecipeDetailsById(recipeId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/RecipeDetails/${recipeId}`);
   }
 
-  public getRecipes() {
-    return this.http.get<any>(`http://localhost:5202/api/Recipes`);
+  public getRecipes(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/Recipes`);
   }
 
-  public getRecipeClasses() {
-    return this.http.get<any>(`http://localhost:5202/api/RecipeClasses`);
+  public getRecipeClasses(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/RecipeClasses`);
   }
 
-  public getMeasurements() {
-    return this.http.get<any>(`http://localhost:5202/api/Measurements`);
+  public getMeasurements(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/Measurements`);
+  }
+
+  // Method to add a new recipe
+  public addRecipe(recipe: any): Observable<any> {
+    console.log('service called');
+    return this.http.post<any>(`${this.apiUrl}/Recipes`, recipe);
   }
 }

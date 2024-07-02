@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
+  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
@@ -50,6 +51,26 @@ export class CreateRecipeComponent {
     if (this.recipeIngredientsFormArray.length > 0) {
       this.recipeIngredientsFormArray.removeAt(index);
     }
+  };
+
+  private recipe = {};
+  protected isSubmitted = false;
+  protected addRecipe = () => {
+    console.log('called');
+    this.isSubmitted = true;
+    // if (this.recipeForm.valid) {
+    this.recipe = {
+      RecipeTitle: this.recipeForm.controls.title.value,
+      Instructions: this.recipeForm.controls.instructions.value,
+      RecipeClassName: this.recipeForm.controls.recipeClass.value,
+    };
+    console.log(this.recipe);
+    this.ccRecipesService.addRecipe(this.recipe);
+    // }
+    // else {
+    //   alert('not valid');
+    // }
+    this.isSubmitted = false;
   };
 
   protected ingredients$ = this.ccRecipesService.getIngredients();

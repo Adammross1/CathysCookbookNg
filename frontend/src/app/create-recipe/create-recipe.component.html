@@ -1,6 +1,6 @@
 <div class="form-container">
   <h1>Create a Recipe</h1>
-  <form [formGroup]="recipeForm">
+  <form [formGroup]="recipeForm" (submit)="addRecipe()">
     <div>
       <label for="title">Title:</label>
       <input id="title" formControlName="title" placeholder="Recipe Title">
@@ -29,7 +29,7 @@
           }
           }
         </select>
-        <input formControlName="amount" placeholder="Amount">
+        <input type="number" formControlName="amount" placeholder="Amount">
         <button class="remove" (click)="removeFormGroup(i)">
           <img src="../../assets/svg/trash.svg">
         </button>

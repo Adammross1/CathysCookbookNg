@@ -15,7 +15,11 @@ namespace CathysCookbookAPI.Models
         public IEnumerable<RecipeClass> RecipeClasses => _cookbookContext.RecipeClasses;
         public IEnumerable<MeasurementUnit> Measurements => _cookbookContext.MeasurementUnits;
 
-
+        public void AddRecipe(Recipe recipe)
+        {
+            _cookbookContext.Recipes.Add(recipe);
+            _cookbookContext.SaveChanges();
+        }
 
         public void AddRecipeDetail(RecipeDetail recipeDetail)
         {
