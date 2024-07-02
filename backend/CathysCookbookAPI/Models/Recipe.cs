@@ -11,5 +11,5 @@ public partial class Recipe
 
     public string Instructions { get; set; } = null!;
 
-    public int RecipeClassId { get; set; }
+    public required string RecipeClassName { get; set; }
 }

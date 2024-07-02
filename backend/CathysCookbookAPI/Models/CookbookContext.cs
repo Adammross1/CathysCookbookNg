@@ -61,12 +61,12 @@ public partial class CookbookContext : DbContext
 
         modelBuilder.Entity<Recipe>(entity =>
         {
-            entity.HasKey(e => new { e.RecipeId, e.RecipeTitle, e.Instructions, e.RecipeClassId });
+            entity.HasKey(e => new { e.RecipeId, e.RecipeTitle, e.Instructions });
 
             entity.ToTable("recipes");
 
             entity.Property(e => e.RecipeId).HasColumnName("RecipeID");
-            entity.Property(e => e.RecipeClassId).HasColumnName("RecipeClassID");
+            // entity.Property(e => e.RecipeClassId).HasColumnName("RecipeClassID");
         });
 
         modelBuilder.Entity<RecipeClass>(entity =>

@@ -3,20 +3,26 @@ import { OperatorFunction, map } from 'rxjs';
 import { MealDBRecipesService } from '../core/services/mealdb-recipes.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
-  selector: 'app-search-recipes',
+  selector: 'app-search-online-recipes',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink, RouterLinkActive],
-  templateUrl: './search-recipes.component.html',
-  styleUrl: './search-recipes.component.scss',
+  templateUrl: './search-online-recipes.component.html',
+  styleUrl: './search-online-recipes.component.scss',
 })
-export class SearchRecipesComponent {
+export class SearchOnlineRecipesComponent {
   title = 'training';
   private mealDBService = inject(MealDBRecipesService);
   protected recipesSignal = signal<
-    { name: string; category: string; area: string; ingredients: string[]; id: string; }[]
+    {
+      name: string;
+      category: string;
+      area: string;
+      ingredients: string[];
+      id: string;
+    }[]
   >([]);
   protected recipeSearchParam = '';
   protected searchRecipe = (searchParam: string) => {

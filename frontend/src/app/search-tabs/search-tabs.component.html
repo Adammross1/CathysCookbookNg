@@ -10,7 +10,7 @@
   </div>
 
   <div class="search-container">
-    @switch (selectedTab$ | async) { @case('MealDB'){ <app-search-recipes />}
-    @case('MyDB'){ <app-my-recipes /> } }
+    @switch (selectedTab$ | async) { @case('MealDB'){ <app-search-online-recipes />}
+    @case('MyDB'){ <app-search-my-recipes /> } }
   </div>
 </div>

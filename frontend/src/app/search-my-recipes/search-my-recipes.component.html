@@ -1,4 +1,4 @@
-@if ({recipes: recipesSignal()}; as data) {
+@if ({recipes: recipes$ | async}; as data) {
 <div class="search-container">
   <form (submit)="searchRecipe(recipeSearchParam)">
     <h1>Online Recipes</h1>
@@ -15,13 +15,12 @@
     @for (recipe of data.recipes ; track recipe) {
     <div>
       <a [routerLink]="['../recipe/', recipe.id]" routerLinkActive="activebutton" ariaCurrentWhenActive="page">{{
-        recipe.name }}</a>
+        recipe.RecipeTitle }}</a>
       <div>
-        <p class="pill">{{ recipe.category }}</p>
-        <p class="pill">{{ recipe.area }}</p>
+        <p class="pill">{{ recipe.RecipeClassName }}</p>
       </div>
     </div>
-    <p>{{ recipe.ingredients }}</p>
+    <!-- <p>{{ recipe.ingredients }}</p> -->
     }
   </div>
 </div>

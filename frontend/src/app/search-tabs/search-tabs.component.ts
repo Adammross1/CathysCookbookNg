@@ -1,13 +1,17 @@
 import { Component, inject } from '@angular/core';
-import { SearchRecipesComponent } from '../search-recipes/search-recipes.component';
+import { SearchOnlineRecipesComponent } from '../search-online-recipes/search-online-recipes.component';
 import { SearchTabsService } from '../core/services/search-tabs.service';
 import { CommonModule } from '@angular/common';
-import { MyRecipesComponent } from '../my-recipes/my-recipes.component';
+import { SearchMyRecipesComponent } from '../search-my-recipes/search-my-recipes.component';
 
 @Component({
   selector: 'app-search-tabs',
   standalone: true,
-  imports: [CommonModule, SearchRecipesComponent, MyRecipesComponent],
+  imports: [
+    CommonModule,
+    SearchOnlineRecipesComponent,
+    SearchMyRecipesComponent,
+  ],
   templateUrl: './search-tabs.component.html',
   styleUrl: './search-tabs.component.scss',
 })

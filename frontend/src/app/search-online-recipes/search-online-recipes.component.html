@@ -1,0 +1,28 @@
+@if ({recipes: recipesSignal()}; as data) {
+  <div class="search-container">
+    <form (submit)="searchRecipe(recipeSearchParam)">
+      <h1>Online Recipes</h1>
+      <div class="align-button-over-input">
+        <input type="text" name="recipe" [(ngModel)]="recipeSearchParam" />
+        <button type="submit">
+          <img src="../../assets/svg/search.svg" />
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="results-container">
+    <div class="results-scroll">
+      @for (recipe of data.recipes ; track recipe) {
+      <div>
+        <a [routerLink]="['../recipe/', recipe.id]" routerLinkActive="activebutton" ariaCurrentWhenActive="page">{{
+          recipe.name }}</a>
+        <div>
+          <p class="pill">{{ recipe.category }}</p>
+          <p class="pill">{{ recipe.area }}</p>
+        </div>
+      </div>
+      <p>{{ recipe.ingredients }}</p>
+      }
+    </div>
+  </div>
+  }
