@@ -8,14 +8,14 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './my-recipes.component.html',
-  styleUrl: './my-recipes.component.scss'
+  styleUrl: './my-recipes.component.scss',
 })
 export class MyRecipesComponent {
   private ccRecipesService = inject(CcRecipesService);
 
-  protected ingredients$ =
-    this.ccRecipesService.getRecipe().pipe(map((response: any[]) => {
-      return response.map(item => item.ingredientName);
+  protected ingredients$ = this.ccRecipesService.getRecipeDetails().pipe(
+    map((response: any[]) => {
+      return response.map((item) => item.ingredientName);
     })
-    )
+  );
 }

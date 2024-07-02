@@ -7,7 +7,13 @@
     </div>
     <div>
       <label for="recipeClass">Class:</label>
-      <input id="recipeClass" formControlName="recipeClass" placeholder="Recipe Class">
+      <select id="recipeClass" formControlName="recipeClass" placeholder="Recipe Class">
+        @if ({classes: recipeClasses$ | async}; as data) {
+        @for(class of data.classes; track class) {
+        <option>{{ class.recipeClassName }}</option>
+        }
+        }
+      </select>
     </div>
 
     <label>Ingredients</label>
@@ -16,7 +22,13 @@
 
       <div [formGroupName]="i">
         <input formControlName="ingredientName" placeholder="Ingredient Name">
-        <input formControlName="unit" placeholder="Unit">
+        <select formControlName="unit" placeholder="Unit">
+          @if ({measurements: measurements$ | async}; as data) {
+          @for(measurement of data.measurements; track measurement) {
+          <option>{{ measurement.measurementName }}</option>
+          }
+          }
+        </select>
         <input formControlName="amount" placeholder="Amount">
         <button class="remove" (click)="removeFormGroup(i)">
           <img src="../../assets/svg/trash.svg">

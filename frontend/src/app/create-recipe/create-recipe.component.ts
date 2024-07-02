@@ -6,8 +6,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { IngredientsService } from '../core/services/ingredients.service';
 import { CommonModule } from '@angular/common';
+import { CcRecipesService } from '../core/services/cc-recipes.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-create-recipe',
@@ -17,7 +18,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './create-recipe.component.scss',
 })
 export class CreateRecipeComponent {
-  private ingredientsService = inject(IngredientsService);
+  private ccRecipesService = inject(CcRecipesService);
   private formBuilder = inject(FormBuilder);
 
   protected recipeForm = this.formBuilder.group({
@@ -51,5 +52,7 @@ export class CreateRecipeComponent {
     }
   };
 
-  protected ingredients$ = this.ingredientsService.fetchIngredients();
+  protected ingredients$ = this.ccRecipesService.getIngredients();
+  protected recipeClasses$ = this.ccRecipesService.getRecipeClasses();
+  protected measurements$ = this.ccRecipesService.getMeasurements();
 }
