@@ -21,6 +21,17 @@ namespace CathysCookbookAPI.Controllers
             return _cookbookRepository.Recipes;
         }
 
+        [HttpGet("{recipeId}")]
+        public ActionResult<IEnumerable<Recipe>> GetByRecipeId(int recipeId)
+        {
+            var recipe = _cookbookRepository.Recipes.Where(rd => rd.RecipeId == recipeId).ToList();
+            if (!recipe.Any())
+            {
+                return NotFound();
+            }
+            return recipe;
+        }
+
         [HttpPost]
         public ActionResult<Recipe> CreateRecipe(Recipe recipe)
         {

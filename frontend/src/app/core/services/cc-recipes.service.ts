@@ -27,6 +27,10 @@ export class CcRecipesService {
     return this.http.get<any>(`${this.apiUrl}/Recipes`);
   }
 
+  public getRecipeByID = (recipeId: number) => {
+    return this.http.get<any>(`${this.apiUrl}/Recipes/${recipeId}`);
+  };
+
   public getRecipeClasses(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/RecipeClasses`);
   }
@@ -41,10 +45,10 @@ export class CcRecipesService {
     return this.http.post<any>(`${this.apiUrl}/Recipes`, recipe);
   }
 
-//  For Postman  {
-//     RecipeId: 2
-//     RecipeTitle: 'spaghetti',
-//     Instructions: 'make spaghetti',
-//     RecipeClassName: 'main course',
-// }
+  //  For Postman  {
+  //     RecipeId: 2
+  //     RecipeTitle: 'spaghetti',
+  //     Instructions: 'make spaghetti',
+  //     RecipeClassName: 'main course',
+  // }
 }

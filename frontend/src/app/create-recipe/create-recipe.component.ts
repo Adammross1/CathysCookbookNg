@@ -40,9 +40,9 @@ export class CreateRecipeComponent {
 
   protected createIngredientFormGroup(): FormGroup {
     return this.formBuilder.group({
-      ingredientName: ['', Validators.required],
-      unit: ['', Validators.required],
-      amount: ['', Validators.required],
+      ingredientName: [''],
+      unit: [''],
+      amount: [''],
     });
   }
 
@@ -61,7 +61,7 @@ export class CreateRecipeComponent {
   protected addRecipe = () => {
     console.log('called');
     this.isSubmitted = true;
-    // if (this.recipeForm.valid) {
+    if (this.recipeForm.valid) {
     this.recipe = {
       RecipeTitle: this.recipeForm.controls.title.value,
       Instructions: this.recipeForm.controls.instructions.value,
@@ -69,10 +69,10 @@ export class CreateRecipeComponent {
     };
     console.log(this.recipe);
     this.ccRecipesService.addRecipe(this.recipe);
-    // }
-    // else {
-    //   alert('not valid');
-    // }
+    }
+    else {
+      alert('not valid');
+    }
     this.isSubmitted = false;
   };
 

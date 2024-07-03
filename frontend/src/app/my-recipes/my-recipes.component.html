@@ -1,1 +1,19 @@
-<p>my-recipes works!</p>
+@if ({recipes: myRecipes$ | async}; as data) {
+<div class="header">
+  <h1>My Recipes</h1>
+</div>
+<div class="recipes-container">
+  <div class="scroll">
+    @for (recipe of data.recipes; track recipe) {
+    <div>
+      <a [routerLink]="['../my-recipe/', recipe.recipeId]" routerLinkActive="activebutton" ariaCurrentWhenActive="page">{{
+        recipe.recipeTitle }}</a>
+      <div>
+        <p class="pill">{{ recipe.recipeClassName }}</p>
+      </div>
+    </div>
+    <p>{{ recipe.instructions }}</p>
+    }
+  </div>
+</div>
+}

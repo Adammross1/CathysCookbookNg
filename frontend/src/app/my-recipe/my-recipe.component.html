@@ -1,1 +1,32 @@
-<p>my-recipe works!</p>
+@if ({recipe: recipe$ | async}; as data) {
+<div class="recipe-container">
+  <div class="header-container">
+    <h1>{{ data.recipe[0].recipeTitle }}</h1>
+    <div>
+      <p class="pill">{{ data.recipe[0].recipeTitle }}</p>
+    </div>
+  </div>
+
+  <div class="image-container">
+    <img src="../../assets/svg/logoBlack.svg" />
+  </div>
+
+  <div class="instructions-container">
+    <h3 class="instructions">Instructions</h3>
+    <div class="item">
+      <p>{{ data.recipe[0].instructions }}</p>
+    </div>
+  </div>
+
+  <div class="ingredients-container">
+    <h3 class="ingredients">Ingredients</h3>
+    <div class="item">
+      <ul>
+        @for (ingredient of data.recipe.ingredients; track ingredient) {
+        <li>{{ ingredient }}</li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>
+}
