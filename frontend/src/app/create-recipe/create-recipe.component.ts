@@ -38,21 +38,11 @@ export class CreateRecipeComponent {
     return this.recipeForm.get('recipeIngredientsFormArray') as FormArray;
   }
 
-  private amountValidator(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      const amountValue = control.value;
-      if (amountValue !== null && (isNaN(amountValue) || amountValue < 0)) {
-        return { invalidAmount: true };
-      }
-      return null;
-    };
-  }
-
   protected createIngredientFormGroup(): FormGroup {
     return this.formBuilder.group({
       ingredientName: ['', Validators.required],
       unit: ['', Validators.required],
-      amount: ['', Validators.required, this.amountValidator()],
+      amount: ['', Validators.required],
     });
   }
 
@@ -61,7 +51,7 @@ export class CreateRecipeComponent {
   };
 
   protected removeFormGroup = (index: number) => {
-    if (this.recipeIngredientsFormArray.length > 0) {
+    if (this.recipeIngredientsFormArray.length > 1) {
       this.recipeIngredientsFormArray.removeAt(index);
     }
   };

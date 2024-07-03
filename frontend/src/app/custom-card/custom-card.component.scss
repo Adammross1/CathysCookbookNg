@@ -39,7 +39,12 @@
       width: 80%;
       margin: 1em 0 0;
       font-size: 1.2em;
+      font-family: $sans-serif-font;
     }
+  }
+  &:hover div {
+    opacity: 1;
+    transition: transform 0.5s ease;
   }
 
   &:hover {
@@ -48,10 +53,5 @@
 
   &:hover img {
     transform: scale(1.2);
-  }
-
-  &:hover div {
-    opacity: 1;
-    transition: transform 0.5s ease;
   }
 }

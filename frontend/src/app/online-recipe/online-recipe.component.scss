@@ -6,7 +6,6 @@
   grid-template-rows: repeat(3 1fr);
   border: 1px solid $dark-purple;
   border-radius: 1rem;
-  box-shadow: 2px 2px 8px rgb(125, 91, 177, 0.5);
   padding: 2rem;
   width: 60vw;
 
@@ -14,7 +13,6 @@
     grid-column: 1 / span 2;
     grid-row: 1 / span 1;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     h1 {
@@ -71,18 +69,19 @@
       font-family: $serif-font;
       color: $dark-purple;
       padding-bottom: 0.5rem;
-      .item {
-        max-height: 30rem;
-        overflow-y: auto;
-        scrollbar-color: $dark-purple $background-purple;
-        scrollbar-width: thin;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        p {
-          color: $dark-text;
-          font-size: 2rem;
-        }
+    }
+    .item {
+      max-height: 30rem;
+      overflow-y: auto;
+      scrollbar-color: $dark-purple $background-purple;
+      scrollbar-width: thin;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      p {
+        font-family: $sans-serif-font;
+        color: $dark-text;
+        font-size: 1rem;
       }
     }
   }
@@ -96,22 +95,23 @@
     background-color: $background-purple;
     border: 1px solid $light-purple;
     border-radius: 1rem;
-    padding: 1rem;
+    padding: 2rem;
     margin: 2rem 1rem 0 1rem;
     .ingredients {
       font-family: $serif-font;
       color: $dark-purple;
       padding: 1rem 0 2rem 0;
-      .item {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        ul {
-          li {
-            list-style: none;
-            color: $light-purple;
-          }
+    }
+    .item {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      ul {
+        li {
+          list-style: none;
+          color: $light-purple;
+          font-size: 2rem;
         }
       }
     }

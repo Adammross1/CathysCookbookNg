@@ -1,5 +1,6 @@
 @if ({recipes: recipesSignal()}; as data) {
-  <div class="search-container">
+<div class="search-container">
+  <div class="header">
     <form (submit)="searchRecipe(recipeSearchParam)">
       <h1>Online Recipes</h1>
       <div class="align-button-over-input">
@@ -25,4 +26,5 @@
       }
     </div>
   </div>
-  }
+</div>
+}

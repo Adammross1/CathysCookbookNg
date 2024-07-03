@@ -5,9 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<CookbookContext>(options =>
-{
-    options.UseSqlite(builder.Configuration["ConnectionStrings:CookbookConnection"]);
-});
+    options.UseSqlite(builder.Configuration["ConnectionStrings:CookbookConnection"])
+);
 
 builder.Services.AddScoped<ICookbookRepository, EFCookbookRepository>();
 
@@ -27,7 +26,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(p => p.WithOrigins("http://localhost:4200"));
+app.UseCors(p => p.WithOrigins("http://localhost:4200", "https://postman.com"));
 
 app.UseHttpsRedirection();
 

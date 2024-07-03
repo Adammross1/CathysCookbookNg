@@ -6,14 +6,7 @@ namespace CathysCookbookAPI.Models;
 
 public partial class CookbookContext : DbContext
 {
-    public CookbookContext()
-    {
-    }
-
-    public CookbookContext(DbContextOptions<CookbookContext> options)
-        : base(options)
-    {
-    }
+    public CookbookContext(DbContextOptions<CookbookContext> options) : base(options) {}
 
     public virtual DbSet<Ingredient> Ingredients { get; set; }
 

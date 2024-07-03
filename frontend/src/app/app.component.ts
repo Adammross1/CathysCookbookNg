@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SearchOnlineRecipesComponent } from './search-online-recipes/search-online-recipes.component';
-import { SearchTabsComponent } from './search-tabs/search-tabs.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { CookbooksComponent } from './cookbooks/cookbooks.component';
 import { MealPrepComponent } from './meal-prep/meal-prep.component';
 import { FooterComponent } from './footer/footer.component';
+import { CookbookTabsComponent } from './cookbook-tabs/cookbook-tabs.component';
 
 @Component({
   selector: 'app-root',
@@ -15,9 +14,8 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     RouterOutlet,
     SearchOnlineRecipesComponent,
-    SearchTabsComponent,
     NavbarComponent,
-    CookbooksComponent,
+    CookbookTabsComponent,
     MealPrepComponent,
     FooterComponent,
   ],

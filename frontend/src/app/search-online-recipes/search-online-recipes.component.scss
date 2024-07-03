@@ -1,118 +1,123 @@
 @import "../core/scss/variables";
 
 .search-container {
-  background-color: $light-purple;
-  border: 1px solid $light-purple;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 2rem;
-  form {
+  width: 70vw;
+  .header {
+    background-color: $light-purple;
+    border: 1px solid $light-purple;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
     display: flex;
-    flex-direction: column;
-    h1 {
-      font-family: $serif-font;
-      text-align: center;
-      color: #fff;
-    }
-    .align-button-over-input {
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2rem;
+    form {
       display: flex;
-      flex-direction: row;
-      input {
-        padding: 0.7rem;
-        width: 20rem;
-        border-radius: 1rem;
-        border: 2px solid #ccc;
-        font-size: 1rem;
+      flex-direction: column;
+      h1 {
+        font-family: $serif-font;
+        text-align: center;
+        color: #fff;
+        margin: 1rem;
       }
-      button {
-        width: 3rem;
-        height: 3rem;
+      .align-button-over-input {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #eee;
-        border: 2px solid #ccc;
-        border-radius: 1rem;
-        margin-left: -3rem;
-        transition: background-color 300ms ease;
-        cursor: pointer;
-        &:hover {
-          background-color: #ddd;
+        flex-direction: row;
+        input {
+          padding: 0.7rem;
+          width: 20rem;
+          border-radius: 1rem;
+          border: 2px solid #ccc;
+          font-size: 1rem;
+          font-family: $sans-serif-font;
         }
-        img {
-          width: 1.5rem;
-          height: 1.5rem;
+        button {
+          width: 3rem;
+          height: 3rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: #eee;
+          border: 2px solid #ccc;
+          border-radius: 1rem;
+          margin-left: -3rem;
+          transition: background-color 300ms ease;
+          cursor: pointer;
+          &:hover {
+            background-color: #ddd;
+          }
+          img {
+            width: 1.5rem;
+            height: 1.5rem;
+          }
         }
       }
     }
   }
-}
-.results-container {
-  background-color: #fff;
-  border: 1px solid $light-purple;
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
-  min-height: 10rem;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  padding: 2rem;
+  .results-container {
+    background-color: #fff;
+    border: 1px solid $light-purple;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    min-height: 10rem;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 2rem;
 
-  .results-scroll {
-    max-height: 20rem;
-    width: 100%;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: $dark-purple $background-purple;
-    div {
-      display: flex;
-      align-items: center;
-      a {
-        text-decoration: none;
-        color: $dark-purple;
-        font-family: $serif-font;
-        font-size: 1.5rem;
-        transition: color 0.5s ease;
-        transition: text-decoration 300ms ease;
-        cursor: pointer;
-        &:hover {
-          -webkit-mask-image: linear-gradient(
-            -75deg,
-            rgba(0, 0, 0, 0.6) 30%,
-            #000 50%,
-            rgba(0, 0, 0, 0.6) 70%
-          );
-          -webkit-mask-size: 200%;
-          animation: shine 2s infinite;
-        }
-      }
+    .results-scroll {
+      max-height: 45vh;
+      width: 100%;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: $dark-purple $background-purple;
       div {
-        text-align: left;
         display: flex;
-        flex-direction: row;
         align-items: center;
-        padding: 0.5rem 1rem;
-        .pill {
-          border: 1px solid $dark-purple;
-          border-radius: 3rem;
-          background-color: $background-purple;
-          color: $dark-purple;
-          padding: 0.3rem 0.8rem;
-          margin-left: 1rem;
-          font-family: $sans-serif-font;
-          font-size: .7rem;
+        a {
           text-decoration: none;
+          color: $dark-purple;
+          font-family: $serif-font;
+          font-size: 1.5rem;
+          transition: color 0.5s ease;
+          transition: text-decoration 300ms ease;
+          cursor: pointer;
+          &:hover {
+            -webkit-mask-image: linear-gradient(
+              -75deg,
+              rgba(0, 0, 0, 0.6) 30%,
+              #000 50%,
+              rgba(0, 0, 0, 0.6) 70%
+            );
+            -webkit-mask-size: 200%;
+            animation: shine 2s infinite;
+          }
+        }
+        div {
+          text-align: left;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 0.5rem 1rem;
+          .pill {
+            border: 1px solid $dark-purple;
+            border-radius: 3rem;
+            background-color: $background-purple;
+            color: $dark-purple;
+            padding: 0.3rem 0.8rem;
+            margin-left: 1rem;
+            font-family: $sans-serif-font;
+            font-size: 0.7rem;
+            text-decoration: none;
+          }
         }
       }
-    }
-    p {
-      color: $light-purple;
-      padding-left: 2rem;
-      margin: 0 0 1rem 0;
-      max-width: 80%;
+      p {
+        color: $light-purple;
+        padding-left: 2rem;
+        margin: 0 0 1rem 0;
+        max-width: 80%;
+      }
     }
   }
 }

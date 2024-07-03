@@ -40,4 +40,11 @@ export class CcRecipesService {
     console.log('service called');
     return this.http.post<any>(`${this.apiUrl}/Recipes`, recipe);
   }
+
+//  For Postman  {
+//     RecipeId: 2
+//     RecipeTitle: 'spaghetti',
+//     Instructions: 'make spaghetti',
+//     RecipeClassName: 'main course',
+// }
 }
