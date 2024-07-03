@@ -6,8 +6,8 @@
   border-top-right-radius: 1rem;
   h1 {
     color: #fff;
-    padding: 1rem 2rem;
-    font-family: $sans-serif-font;
+    padding: 2rem;
+    font-family: $serif-font;
   }
 }
 .form-container {
@@ -72,6 +72,8 @@
       &:hover {
         background-color: #f6b8b8;
         -webkit-animation: bounce-top 0.8s both;
+        cursor: pointer;
+
       }
       img {
         height: 1.5rem;
@@ -99,6 +101,7 @@
         background: linear-gradient(to right, #bbadff, #cbb2fe, #e0c3fc);
         background-size: 300% 300%;
         animation: gradientAnimation 6s ease infinite;
+        cursor: pointer;
       }
     }
   }
@@ -130,8 +133,8 @@
  */
 @-webkit-keyframes bounce-top {
   0% {
-    -webkit-transform: translateY(-10px);
-    transform: translateY(-10px);
+    -webkit-transform: translateY(-6px);
+    transform: translateY(-6px);
     -webkit-animation-timing-function: ease-in;
     animation-timing-function: ease-in;
     opacity: 1;
@@ -140,8 +143,8 @@
     opacity: 1;
   }
   40% {
-    -webkit-transform: translateY(-6px);
-    transform: translateY(-6px);
+    -webkit-transform: translateY(-4px);
+    transform: translateY(-4px);
     -webkit-animation-timing-function: ease-in;
     animation-timing-function: ease-in;
   }
