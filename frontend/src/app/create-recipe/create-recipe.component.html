@@ -3,19 +3,21 @@
 </div>
 <div class="form-container">
   <form [formGroup]="recipeForm" (submit)="addRecipe()">
-    <div>
-      <label for="title">Title:</label>
-      <input id="title" formControlName="title" placeholder="Recipe Title">
-    </div>
-    <div>
-      <label for="recipeClass">Class:</label>
-      <select id="recipeClass" formControlName="recipeClass" placeholder="Recipe Class">
+    <div class="center-content">
+      <div>
+        <label for="title">Title:</label>
+        <input id="title" formControlName="title" placeholder="Recipe Title">
+      </div>
+      <div>
+        <label for="recipeClass">Class:</label>
         @if ({classes: recipeClasses$ | async}; as data) {
-        @for(class of data.classes; track class) {
-        <option>{{ class.recipeClassName }}</option>
+        <select id="recipeClass" formControlName="recipeClass" placeholder="Recipe Class">
+          @for(class of data.classes; track class) {
+          <option>{{ class.recipeClassName }}</option>
+          }
+        </select>
         }
-        }
-      </select>
+      </div>
     </div>
 
     <label>Ingredients</label>

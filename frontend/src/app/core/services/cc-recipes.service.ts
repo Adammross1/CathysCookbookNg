@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Recipe } from '../constants';
 
 @Injectable({
   providedIn: 'root',
@@ -23,32 +24,34 @@ export class CcRecipesService {
     return this.http.get<any>(`${this.apiUrl}/RecipeDetails/${recipeId}`);
   }
 
+  
+  public getRecipeByID = (recipeId: number) => {
+    return this.http.get<any>(`${this.apiUrl}/Recipes/${recipeId}`);
+  };
+  
+  public getRecipeClasses(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/RecipeClasses`);
+  }
+  
+  public getMeasurements(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/Measurements`);
+  }
+  
   public getRecipes(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/Recipes`);
   }
 
-  public getRecipeByID = (recipeId: number) => {
-    return this.http.get<any>(`${this.apiUrl}/Recipes/${recipeId}`);
-  };
-
-  public getRecipeClasses(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/RecipeClasses`);
-  }
-
-  public getMeasurements(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/Measurements`);
-  }
-
-  // Method to add a new recipe
-  public addRecipe(recipe: any): Observable<any> {
+  public addRecipe(recipe: Recipe): Observable<Recipe> {
     console.log('service called');
-    return this.http.post<any>(`${this.apiUrl}/Recipes`, recipe);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<Recipe>(`${this.apiUrl}/Recipes`, recipe, {
+      headers: headers,
+    });
   }
 
   //  For Postman  {
-  //     RecipeId: 2
-  //     RecipeTitle: 'spaghetti',
-  //     Instructions: 'make spaghetti',
-  //     RecipeClassName: 'main course',
+  //     recipeTitle: 'spaghetti',
+  //     instructions: 'make spaghetti',
+  //     recipeClassName: 'main course',
   // }
 }

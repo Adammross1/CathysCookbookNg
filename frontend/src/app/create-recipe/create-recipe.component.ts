@@ -11,8 +11,8 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CcRecipesService } from '../core/services/cc-recipes.service';
-import { map } from 'rxjs';
 import { NoNegativeDirective } from '../directives/no-negative.directive';
+import { Recipe } from '../core/constants';
 
 @Component({
   selector: 'app-create-recipe',
@@ -28,7 +28,7 @@ export class CreateRecipeComponent {
   protected recipeForm = this.formBuilder.group({
     title: ['', Validators.required],
     instructions: ['', Validators.required],
-    recipeClass: ['', Validators.required],
+    recipeClass: ['Main Course', Validators.required],
     recipeIngredientsFormArray: this.formBuilder.array([
       this.createIngredientFormGroup(),
     ]),
@@ -56,21 +56,24 @@ export class CreateRecipeComponent {
     }
   };
 
-  private recipe = {};
+  private recipe: Recipe = {
+    recipeTitle: '',
+    instructions: '',
+    recipeClassName: '',
+  };
   protected isSubmitted = false;
   protected addRecipe = () => {
     console.log('called');
     this.isSubmitted = true;
     if (this.recipeForm.valid) {
-    this.recipe = {
-      RecipeTitle: this.recipeForm.controls.title.value,
-      Instructions: this.recipeForm.controls.instructions.value,
-      RecipeClassName: this.recipeForm.controls.recipeClass.value,
-    };
-    console.log(this.recipe);
-    this.ccRecipesService.addRecipe(this.recipe);
-    }
-    else {
+      this.recipe = {
+        recipeTitle: this.recipeForm.controls.title.value!,
+        instructions: this.recipeForm.controls.instructions.value!,
+        recipeClassName: this.recipeForm.controls.recipeClass.value!,
+      };
+      console.log(this.recipe);
+      this.ccRecipesService.addRecipe(this.recipe).subscribe();
+    } else {
       alert('not valid');
     }
     this.isSubmitted = false;

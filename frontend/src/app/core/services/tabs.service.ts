@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class TabsService {
   private cookbookTabSelectionSubject = new BehaviorSubject<string>(
-    'myRecipes'
+    'newRecipe'
   );
 
   public getCookbookTabSelectionSubjectAsObservable() {

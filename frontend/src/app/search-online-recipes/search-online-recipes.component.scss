@@ -18,7 +18,7 @@
         font-family: $serif-font;
         text-align: center;
         color: #fff;
-        margin: 1rem;
+        margin: 2rem 0 1rem 0;
       }
       .align-button-over-input {
         display: flex;
@@ -79,6 +79,7 @@
           color: $dark-purple;
           font-family: $serif-font;
           font-size: 1.5rem;
+          margin-bottom: -0.5rem;
           transition: color 0.5s ease;
           transition: text-decoration 300ms ease;
           cursor: pointer;
@@ -105,7 +106,7 @@
             background-color: $background-purple;
             color: $dark-purple;
             padding: 0.3rem 0.8rem;
-            margin-left: 1rem;
+            margin: 1rem 0 0.5rem 1rem;
             font-family: $sans-serif-font;
             font-size: 0.7rem;
             text-decoration: none;
@@ -114,8 +115,7 @@
       }
       p {
         color: $light-purple;
-        padding-left: 2rem;
-        margin: 0 0 1rem 0;
+        margin: 0 0 1rem 2rem;
         max-width: 80%;
       }
     }
