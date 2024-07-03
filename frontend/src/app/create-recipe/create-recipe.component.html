@@ -29,7 +29,7 @@
           }
           }
         </select>
-        <input type="number" formControlName="amount" placeholder="Amount">
+        <input type="number" formControlName="amount" placeholder="Amount" appNoNegative>
         <button class="remove" (click)="removeFormGroup(i)">
           <img src="../../assets/svg/trash.svg">
         </button>
