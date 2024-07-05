@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Recipe } from '../constants';
 
 @Injectable({
@@ -24,19 +24,18 @@ export class CcRecipesService {
     return this.http.get<any>(`${this.apiUrl}/RecipeDetails/${recipeId}`);
   }
 
-  
   public getRecipeByID = (recipeId: number) => {
     return this.http.get<any>(`${this.apiUrl}/Recipes/${recipeId}`);
   };
-  
+
   public getRecipeClasses(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/RecipeClasses`);
   }
-  
+
   public getMeasurements(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/Measurements`);
   }
-  
+
   public getRecipes(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/Recipes`);
   }
@@ -48,6 +47,14 @@ export class CcRecipesService {
       headers: headers,
     });
   }
+
+  private searchFilterSubject = new BehaviorSubject<string>('');
+  public setSearchFilterSubject = (search: string) => {
+    this.searchFilterSubject.next(search);
+  };
+  public getSearchFilterSubjectAsObservable = () => {
+    return this.searchFilterSubject;
+  };
 
   //  For Postman  {
   //     recipeTitle: 'spaghetti',

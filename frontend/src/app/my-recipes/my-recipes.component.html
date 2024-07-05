@@ -2,7 +2,7 @@
 <div class="header">
   <h1>My Recipes</h1>
   <div class="align-button-over-input">
-    <input type="text" name="recipe"/>
+    <input type="text" name="recipe" (input)="onInputChange($event)"/>
     <button type="submit">
       <img src="../../assets/svg/filter.svg" />
     </button>
