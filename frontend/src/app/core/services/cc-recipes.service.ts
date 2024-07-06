@@ -48,6 +48,11 @@ export class CcRecipesService {
     });
   }
 
+  public deleteRecipe(recipeId: number) {
+     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+     return this.http.delete(`${this.apiUrl}/${recipeId}`, { headers });
+   }
+
   private searchFilterSubject = new BehaviorSubject<string>('');
   public setSearchFilterSubject = (search: string) => {
     this.searchFilterSubject.next(search);
@@ -55,10 +60,4 @@ export class CcRecipesService {
   public getSearchFilterSubjectAsObservable = () => {
     return this.searchFilterSubject;
   };
-
-  //  For Postman  {
-  //     recipeTitle: 'spaghetti',
-  //     instructions: 'make spaghetti',
-  //     recipeClassName: 'main course',
-  // }
 }
