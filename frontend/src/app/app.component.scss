@@ -7,7 +7,7 @@
 
 button {
   border: none;
-  background-color: #FFF;
+  background-color: #fff;
   padding: 2rem 0 0 2rem;
   img {
     height: 2rem;
@@ -16,24 +16,22 @@ button {
     cursor: pointer;
   }
   :hover {
-    animation: backArrow .5s;
+    animation: backArrow 0.5s;
   }
 }
-
-
 
 @keyframes backArrow {
   0% {
     transform: translateX(0);
   }
   20% {
-    transform: translateX(-.5rem);
+    transform: translateX(-0.5rem);
   }
   50% {
     transform: translateX(0);
   }
   70% {
-    transform: translateX(-.5rem);
+    transform: translateX(-0.5rem);
   }
   100% {
     transform: translateX(0);

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { tabOption } from '../constants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TabsService {
-  private cookbookTabSelectionSubject = new BehaviorSubject<string>(
+  private cookbookTabSelectionSubject = new BehaviorSubject<tabOption>(
     'myRecipes'
   );
 
@@ -13,7 +14,7 @@ export class TabsService {
     return this.cookbookTabSelectionSubject.asObservable();
   }
 
-  public changeCookbookTab(tabName: string): void {
+  public changeCookbookTab(tabName: tabOption): void {
     this.cookbookTabSelectionSubject.next(tabName);
   }
 }

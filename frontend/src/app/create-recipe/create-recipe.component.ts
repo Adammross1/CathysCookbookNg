@@ -12,7 +12,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { CcRecipesService } from '../core/services/cc-recipes.service';
 import { NoNegativeDirective } from '../directives/no-negative.directive';
-import { Recipe } from '../core/constants';
+import { Recipe } from '../core/models/recipe';
 
 @Component({
   selector: 'app-create-recipe',
@@ -27,8 +27,9 @@ export class CreateRecipeComponent {
 
   protected recipeForm = this.formBuilder.group({
     title: ['', Validators.required],
-    instructions: ['', Validators.required],
     recipeClass: ['Main Course', Validators.required],
+    image: [''],
+    instructions: ['', Validators.required],
     recipeIngredientsFormArray: this.formBuilder.array([
       this.createIngredientFormGroup(),
     ]),

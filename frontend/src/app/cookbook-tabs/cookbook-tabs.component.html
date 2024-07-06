@@ -1,17 +1,15 @@
 <div class="search-tabs-container">
   <div class="search-tabs">
-    <button class="search-tab" (click)="selectTab('myRecipes')"
-      [ngClass]="{ selected: 'myRecipes' === (selectedTab$ | async) }">
-      My Recipes
+    @for (tab of tabs; track tab) {
+    <button class="search-tab" (click)="selectTab(tab)" [ngClass]="{ selected: tab === (selectedTab$ | async) }">
+      {{ tabsDisplayMap[tab] }}
     </button>
-    <button class="search-tab" (click)="selectTab('newRecipe')"
-      [ngClass]="{ selected: 'newRecipe' === (selectedTab$ | async) }">
-      New Recipe
-    </button>
+    }
   </div>
 
   <div class="search-container">
     @switch (selectedTab$ | async) { @case('myRecipes'){ <app-my-recipes />}
-    @case('newRecipe'){ <app-create-recipe /> } }
+    @case('newRecipe'){ <app-create-recipe /> }
+    @case('cookbooks'){ <app-lists /> } }
   </div>
 </div>
