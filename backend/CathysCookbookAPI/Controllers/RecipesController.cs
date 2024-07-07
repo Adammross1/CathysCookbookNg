@@ -35,7 +35,6 @@ namespace CathysCookbookAPI.Controllers
         [HttpPost]
         public ActionResult<Recipe> CreateRecipe(Recipe recipe)
         {
-            Console.WriteLine('C');
             if (recipe == null)
             {
                 return BadRequest("Recipe cannot be null");

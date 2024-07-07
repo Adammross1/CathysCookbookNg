@@ -34,9 +34,17 @@ namespace CathysCookbookAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<RecipeDetail> Post(RecipeDetail recipeDetail)
+        public ActionResult<RecipeDetail> CreateRecipeDetail(RecipeDetail recipeDetail)
         {
+            if (recipeDetail == null)
+            {
+                return BadRequest("Recipe detail cannot be null");
+            }
+
+            // Assuming your repository has an AddRecipe method
             _cookbookRepository.AddRecipeDetail(recipeDetail);
+
+            // Return the created recipe detail along with a 201 Created status code
             return CreatedAtAction(nameof(GetByRecipeId), new { recipeId = recipeDetail.RecipeId }, recipeDetail);
         }
     }
