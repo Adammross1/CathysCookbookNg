@@ -2,8 +2,8 @@
   <h1>Create a Recipe</h1>
 </div>
 <div class="form-container">
-  <form [formGroup]="recipeForm" (submit)="addRecipe()">
-    <div class="center-content">
+  <form [formGroup]="recipeForm" (submit)="addRecipe(); addRecipeDetails()">
+    <div class="main-fields">
       <div>
         <label for="title">Title:</label>
         <input id="title" formControlName="title" placeholder="Recipe Title">
@@ -30,6 +30,7 @@
 
       <div [formGroupName]="i">
         <input formControlName="ingredientName" placeholder="Ingredient Name">
+
         <select formControlName="unit" placeholder="Unit">
           @if ({measurements: measurements$ | async}; as data) {
           @for(measurement of data.measurements; track measurement) {

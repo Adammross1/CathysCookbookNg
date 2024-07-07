@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Recipe } from '../models/recipe';
+import { Ingredient, Recipe, RecipeDetail } from '../models/recipe';
 
 @Injectable({
   providedIn: 'root',
@@ -41,17 +41,30 @@ export class CcRecipesService {
   }
 
   public addRecipe(recipe: Recipe): Observable<Recipe> {
-    console.log('service called');
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<Recipe>(`${this.apiUrl}/Recipes`, recipe, {
       headers: headers,
     });
   }
 
+  public addRecipeIngredient(
+    recipeDetail: RecipeDetail
+  ): Observable<RecipeDetail> {
+    console.log('recipeDetail called', recipeDetail);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<RecipeDetail>(
+      `${this.apiUrl}/RecipeDetails`,
+      recipeDetail,
+      {
+        headers: headers,
+      }
+    );
+  }
+
   public deleteRecipe(recipeId: number) {
-     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-     return this.http.delete(`${this.apiUrl}/${recipeId}`, { headers });
-   }
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.delete(`${this.apiUrl}/${recipeId}`, { headers });
+  }
 
   private searchFilterSubject = new BehaviorSubject<string>('');
   public setSearchFilterSubject = (search: string) => {

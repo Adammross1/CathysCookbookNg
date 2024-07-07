@@ -5,6 +5,7 @@
     <div>
       <p class="pill">{{ data.recipe[0].recipeClassName }}</p>
     </div>
+    <!-- <button (click)="deleteRecipe()">Delete</button> -->
   </div>
 
   <div class="image-container">
@@ -22,9 +23,9 @@
     <h3 class="ingredients">Ingredients</h3>
     <div class="item">
       <ul>
-        @for (ingredient of data.recipe.ingredients; track ingredient) {
+        <!-- @for (ingredient of data.recipe.ingredients; track ingredient) {
         <li>{{ ingredient }}</li>
-        }
+        } -->
       </ul>
     </div>
   </div>
