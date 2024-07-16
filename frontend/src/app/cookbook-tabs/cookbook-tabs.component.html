@@ -1,5 +1,6 @@
 <div class="search-tabs-container">
   <div class="search-tabs">
+    <h1>User's Cookbook</h1>
     @for (tab of tabs; track tab) {
     <button class="search-tab" (click)="selectTab(tab)" [ngClass]="{ selected: tab === (selectedTab$ | async) }">
       {{ tabsDisplayMap[tab] }}

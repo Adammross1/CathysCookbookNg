@@ -1,9 +1,7 @@
 @import "../core/scss/variables";
 
 .header {
-  background-color: $light-purple;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+  background-color: $dark-purple;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,9 +45,6 @@
 
 .recipes-container {
   background-color: #fff;
-  border: 1px solid $light-purple;
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
   min-height: 10rem;
   display: flex;
   justify-content: left;

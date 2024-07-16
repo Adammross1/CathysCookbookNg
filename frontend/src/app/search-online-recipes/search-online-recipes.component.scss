@@ -1,10 +1,10 @@
 @import "../core/scss/variables";
 
 .search-container {
+  margin-top: 5rem;
   width: 70vw;
   .header {
     background-color: $light-purple;
-    border: 1px solid $light-purple;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
     display: flex;
