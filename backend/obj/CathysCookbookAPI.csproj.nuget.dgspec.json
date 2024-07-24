@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\15204\\Desktop\\WebProjects\\CathysCookbookNg\\backend\\CathysCookbookAPI\\CathysCookbookAPI.csproj": {}
+    "C:\\Users\\15204\\Desktop\\WebProjects\\CathysCookbookNg\\backend\\CathysCookbookAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\15204\\Desktop\\WebProjects\\CathysCookbookNg\\backend\\CathysCookbookAPI\\CathysCookbookAPI.csproj": {
+    "C:\\Users\\15204\\Desktop\\WebProjects\\CathysCookbookNg\\backend\\CathysCookbookAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\15204\\Desktop\\WebProjects\\CathysCookbookNg\\backend\\CathysCookbookAPI\\CathysCookbookAPI.csproj",
+        "projectUniqueName": "C:\\Users\\15204\\Desktop\\WebProjects\\CathysCookbookNg\\backend\\CathysCookbookAPI.csproj",
         "projectName": "CathysCookbookAPI",
-        "projectPath": "C:\\Users\\15204\\Desktop\\WebProjects\\CathysCookbookNg\\backend\\CathysCookbookAPI\\CathysCookbookAPI.csproj",
+        "projectPath": "C:\\Users\\15204\\Desktop\\WebProjects\\CathysCookbookNg\\backend\\CathysCookbookAPI.csproj",
         "packagesPath": "C:\\Users\\15204\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\15204\\Desktop\\WebProjects\\CathysCookbookNg\\backend\\CathysCookbookAPI\\obj\\",
+        "outputPath": "C:\\Users\\15204\\Desktop\\WebProjects\\CathysCookbookNg\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\15204\\AppData\\Roaming\\NuGet\\NuGet.Config",

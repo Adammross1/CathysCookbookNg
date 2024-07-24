@@ -1,1 +1,53 @@
-<p>meal-prep works!</p>
+<!-- @if ({ingredients: shoppingList$ | async}; as data) {
+@for (ingredient of data.ingredients; track ingredient) {
+<p>{{ingredient}}</p>
+}
+} -->
+<div class="grid">
+  <div class="recipe-select">
+    @if ({recipes: myRecipes$ | async}; as data) {
+    <div class="header">
+      <h1>Select Recipes</h1>
+      <div class="align-button-over-input">
+        <input type="text" name="recipe" (input)="onInputChange($event)" />
+        <button type="submit">
+          <img src="../../assets/svg/filter.svg" />
+        </button>
+      </div>
+    </div>
+    <div class="recipes-container">
+      <div class="scroll">
+        @for (recipe of data.recipes; track recipe) {
+        <div>
+          <input type="checkbox" (change)="onCheckboxChange($event, recipe)">
+          <p>{{
+            recipe.recipeTitle }}</p>
+          <div>
+            <p class="pill">{{ recipe.recipeClassName }}</p>
+          </div>
+        </div>
+        <p>{{ recipe.instructions }}</p>
+        }
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="shopping list">
+    <h1>Shopping List</h1>
+    @if ({recipes: selectedRecipes$ | async}; as data) {
+    <h3>Selected Recipes</h3>
+    <div class="selected-recipes">
+      @for (recipe of data.recipes; track recipe) {
+      <p>{{recipe.recipeTitle}}</p>
+      }
+    </div>
+    }
+    @if ({ingredients: shoppingList$ | async}; as data) {
+    <h3>List</h3>
+    @for (ingredient of data.ingredients; track ingredient.ingredientName) {
+    <p>{{ ingredient.ingredientName }} - {{ingredient.amount}}</p>
+    }
+    }
+  </div>
+</div>

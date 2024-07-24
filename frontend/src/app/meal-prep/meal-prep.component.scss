@@ -1,0 +1,121 @@
+@import "../core/scss/variables";
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100vw;
+  .recipe-select {
+    grid-column: 1 / span 1;
+    .header {
+      background-color: $dark-purple;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 19vh;
+      h1 {
+        color: #fff;
+        padding: 1rem;
+        font-family: $serif-font;
+      }
+      .align-button-over-input {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 2rem;
+        input {
+          padding: 0.7rem;
+          width: 20rem;
+          border-radius: 1rem;
+          border: 2px solid #ccc;
+          font-size: 1rem;
+          font-family: $sans-serif-font;
+        }
+        button {
+          width: 3rem;
+          height: 3rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: #eee;
+          border: 2px solid #ccc;
+          border-radius: 1rem;
+          margin-left: -3rem;
+          transition: background-color 300ms ease;
+          img {
+            width: 1.5rem;
+            height: 1.5rem;
+            filter: $icon-filter;
+          }
+        }
+      }
+    }
+
+    .recipes-container {
+      background-color: #fff;
+      min-height: 10rem;
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      .scroll {
+        max-height: 70vh;
+        width: 100%;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: $dark-purple $background-purple;
+        div {
+          display: flex;
+          align-items: center;
+          input {
+            margin-left: 1rem;
+          }
+          p {
+            text-decoration: none;
+            color: $dark-purple;
+            font-family: $serif-font;
+            font-size: 1.5rem;
+            margin-bottom: -0.5rem;
+          }
+          div {
+            text-align: left;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            .pill {
+              border: 1px solid $dark-purple;
+              border-radius: 3rem;
+              background-color: $background-purple;
+              color: $dark-purple;
+              padding: 0.3rem 0.8rem;
+              margin: 1rem 0 0.5rem 1rem;
+              font-family: $sans-serif-font;
+              font-size: 0.7rem;
+              text-decoration: none;
+            }
+          }
+        }
+        p {
+          color: $light-purple;
+          margin: 0 0 1rem 2rem;
+          max-width: 80%;
+        }
+      }
+    }
+  }
+
+  .shopping-list {
+    grid-column: 2 / span 2;
+    .selected-recipes {
+    }
+  }
+}
+
+@-webkit-keyframes shine {
+  from {
+    -webkit-mask-position: 150%;
+  }
+
+  to {
+    -webkit-mask-position: -50%;
+  }
+}
