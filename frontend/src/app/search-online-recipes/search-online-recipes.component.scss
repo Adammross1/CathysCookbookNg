@@ -7,10 +7,12 @@
     background-color: $light-purple;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
+    box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
     align-items: center;
     padding-bottom: 2rem;
+    z-index: 5;
     form {
       display: flex;
       flex-direction: column;
@@ -55,15 +57,28 @@
     }
   }
   .results-container {
+    position: relative;
     background-color: #fff;
     border: 1px solid $light-purple;
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
+    box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.3);
     min-height: 10rem;
     display: flex;
     justify-content: left;
     align-items: center;
     padding: 2rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: #fff;
+      z-index: 1; 
+    }
 
     .results-scroll {
       max-height: 45vh;
