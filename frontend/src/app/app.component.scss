@@ -4,6 +4,12 @@
   display: flex;
   justify-content: center;
   margin: 0;
+  height: 89vh;
+  width: 100vw;
+  background-image: url('../assets/img/white-bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 button {

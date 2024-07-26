@@ -1,25 +1,28 @@
 @if ({recipes: myRecipes$ | async}; as data) {
-<div class="header">
-  <h1>My Recipes</h1>
-  <div class="align-button-over-input">
-    <input type="text" name="recipe" (input)="onInputChange($event)"/>
-    <button type="submit">
-      <img src="../../assets/svg/filter.svg" />
-    </button>
-  </div>
-</div>
-<div class="recipes-container">
-  <div class="scroll">
-    @for (recipe of data.recipes; track recipe) {
-    <div>
-      <a [routerLink]="['../my-recipe/', recipe.recipeId]" routerLinkActive="activebutton" ariaCurrentWhenActive="page">{{
-        recipe.recipeTitle }}</a>
-      <div>
-        <p class="pill">{{ recipe.recipeClassName }}</p>
-      </div>
+<div class="container">
+  <div class="header">
+    <h1>My Recipes</h1>
+    <div class="align-button-over-input">
+      <input type="text" name="recipe" (input)="onInputChange($event)" />
+      <button type="submit">
+        <img src="../../assets/svg/filter.svg" />
+      </button>
     </div>
-    <p>{{ recipe.instructions }}</p>
-    }
+  </div>
+  <div class="recipes-container">
+    <div class="scroll">
+      @for (recipe of data.recipes; track recipe) {
+      <div>
+        <a [routerLink]="['../my-recipe/', recipe.recipeId]" routerLinkActive="activebutton"
+          ariaCurrentWhenActive="page">{{
+          recipe.recipeTitle }}</a>
+        <div>
+          <p class="pill">{{ recipe.recipeClassName }}</p>
+        </div>
+      </div>
+      <p>{{ recipe.instructions }}</p>
+      }
+    </div>
   </div>
 </div>
 }

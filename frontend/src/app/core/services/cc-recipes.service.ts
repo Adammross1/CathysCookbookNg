@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
 import { Ingredient, Recipe, RecipeDetail } from '../models/recipe';
 
 @Injectable({
@@ -28,16 +28,37 @@ export class CcRecipesService {
     return this.http.get<any>(`${this.apiUrl}/Recipes/${recipeId}`);
   };
 
+  private recipeClassesSubject = new ReplaySubject<any>(1);
+  public initializeRecipeClasses(): void {
+    this.http.get<any>(`${this.apiUrl}/RecipeClasses`).subscribe((data) => {
+      this.recipeClassesSubject.next(data);
+    });
+  }
+
   public getRecipeClasses(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/RecipeClasses`);
+    return this.recipeClassesSubject.asObservable();
+  }
+
+  private measurementsSubject = new ReplaySubject<any>(1);
+  public initializeMeasurements(): void {
+    this.http.get<any>(`${this.apiUrl}/Measurements`).subscribe((data) => {
+      this.measurementsSubject.next(data);
+    });
   }
 
   public getMeasurements(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/Measurements`);
+    return this.measurementsSubject.asObservable();
+  }
+
+  private recipesSubject = new ReplaySubject<any>(1);
+  public initializeRecipes(): void {
+    this.http.get<any>(`${this.apiUrl}/Recipes`).subscribe((data) => {
+      this.recipesSubject.next(data);
+    });
   }
 
   public getRecipes(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/Recipes`);
+    return this.recipesSubject.asObservable();
   }
 
   public addRecipe(recipe: Recipe): Observable<Recipe> {
