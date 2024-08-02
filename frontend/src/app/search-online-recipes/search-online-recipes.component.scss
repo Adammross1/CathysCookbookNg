@@ -3,6 +3,7 @@
 .search-container {
   margin-top: 5rem;
   width: 70vw;
+  z-index: 10;
   .header {
     background-color: $light-purple;
     border-top-left-radius: 1rem;
@@ -59,7 +60,7 @@
   .results-container {
     position: relative;
     background-color: #fff;
-    border: 1px solid $light-purple;
+    // border: 1px solid $light-purple;
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
     box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.3);
@@ -72,10 +73,10 @@
     &::before {
       content: "";
       position: absolute;
-      top: -5px;
+      top: -8px;
       left: 0;
       right: 0;
-      height: 5px;
+      height: 8px;
       background: #fff;
       z-index: 1; 
     }

@@ -1,55 +1,68 @@
 @import "../core/scss/variables";
 
-.hero-container {
-  position: relative;
+.snap-container {
+  height: 89vh;
   width: 100vw;
-  height: 90vh; /* Set height to occupy the full viewport height */
-  overflow: hidden;
-  margin-bottom: 5rem;
-  video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; /* Ensure the video covers the entire hero container */
-    object-fit: cover;
-  }
-  .img-container {
-    position: absolute;
-    left: 50%;
-    top: 25%;
-    transform: translateX(-50%);
-    z-index: 2;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  .hero-container {
+    scroll-snap-align: start;
+    position: relative;
+    height: 90vh;
+    overflow: hidden;
+    margin-bottom: 5rem;
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .img-container {
+      position: absolute;
+      left: 50%;
+      top: 25%;
+      transform: translateX(-50%);
+      z-index: 2;
 
-    img {
-      height: 20rem;
-      width: 20rem; 
-      display: block; 
-      object-fit: cover; 
-      border-radius: 50%; 
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      background-color: rgba(0, 0, 0, 0.3);
+      img {
+        height: 20rem;
+        width: 20rem;
+        display: block;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.3);
+      }
     }
   }
-}
 
-h1 {
-  text-align: center;
-  color: $dark-purple;
-}
+  .card-container {
+    height: 89vh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h1 {
+      text-align: center;
+      color: $dark-purple;
+      margin-top: -5rem;
+    }
 
-div {
-  display: flex;
-  justify-content: center;
-  .divider {
-    border-bottom: 2px solid $dark-purple;
-    margin: 1rem 0 2rem 0;
-    width: 50%;
+    div {
+      display: flex;
+      justify-content: center;
+      .divider {
+        border-bottom: 2px solid $dark-purple;
+        margin: 1rem 0 2rem 0;
+        width: 80%;
+      }
+    }
+
+    .cards {
+      display: flex;
+      justify-content: space-evenly;
+    }
   }
-}
-
-.card-container {
-  display: flex;
-  justify-content: space-evenly;
-  margin: 2rem;
 }
