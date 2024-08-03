@@ -1,6 +1,14 @@
 <div class="header">
   <h1>Recipe Collections</h1>
 </div>
-<div class="form-container">
-
+<div class="center-content">
+  <div class="card-container">
+    @if ({lists: lists$ | async}; as data) {
+    @for (list of data.lists; track list.listId) {
+    <a class="list-card">
+      <h3>{{list.listName}}</h3>
+    </a>
+    }
+    }
+  </div>
 </div>
