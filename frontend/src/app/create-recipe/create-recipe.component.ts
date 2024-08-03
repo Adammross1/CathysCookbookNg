@@ -14,7 +14,8 @@ import { CcRecipesService } from '../core/services/cc-recipes.service';
 import { NoNegativeDirective } from '../directives/no-negative.directive';
 import { Ingredient, Recipe, RecipeDetail } from '../core/models/recipe';
 import { DropdownModule } from 'primeng/dropdown';
-import { map } from 'rxjs';
+import { combineLatest, map } from 'rxjs';
+import { SelectedIngredientsService } from '../core/services/selected-ingredients.service';
 
 @Component({
   selector: 'app-create-recipe',
@@ -30,10 +31,12 @@ import { map } from 'rxjs';
 })
 export class CreateRecipeComponent implements OnInit {
   private ccRecipesService = inject(CcRecipesService);
+  private selectedIngredientsService = inject(SelectedIngredientsService);
   private formBuilder = inject(FormBuilder);
   private newRecipeId = 0;
 
   ngOnInit(): void {
+    this.initializeIngredients();
     this.ccRecipesService
       .getRecipes()
       .pipe(
@@ -48,42 +51,103 @@ export class CreateRecipeComponent implements OnInit {
       });
   }
 
-  protected ingredients$ = this.ccRecipesService.getIngredients();
   protected recipeClasses$ = this.ccRecipesService.getRecipeClasses();
   protected measurements$ = this.ccRecipesService.getMeasurements();
+  protected selectedIngredients$ =
+    this.selectedIngredientsService.getSelectedIngredientsSubjectAsObservable();
+  protected ingredients$ = combineLatest([
+    this.ccRecipesService.getIngredients(),
+    this.ccRecipesService.getSearchIngredientsFilterSubjectAsObservable(),
+  ]).pipe(
+    map(([data, search]) => {
+      if (!search || search.trim() === '') {
+        return data;
+      } else {
+        const searchTerm = search.trim().toLowerCase();
+        return data.filter((ingredient: Ingredient) => {
+          return ingredient.ingredientName.toLowerCase().includes(searchTerm);
+        });
+      }
+    })
+  );
+
+  onInputChange(event: Event) {
+    this.ccRecipesService.setSearchIngredientsFilterSubject(
+      (event.target as HTMLInputElement).value
+    );
+  }
+
+  protected onCheckboxChange(event: any, ingredient: Ingredient) {
+    if (event.target.checked) {
+      this.selectedIngredientsService.setSelectedIngredientsSubjectAsObservable(
+        ingredient
+      );
+      this.selectedIngredientsService
+        .getSelectedIngredientsSubjectAsObservable()
+        .subscribe((data) => {
+          console.log(data);
+        });
+    } else {
+      this.selectedIngredientsService.removeIngredientFromSelectedIngredients(
+        ingredient
+      );
+      this.removeFormGroup();
+    }
+  }
+
+  protected removeFormGroup = () => {
+    for (let i = 0; i < this.recipeIngredientsFormArray.length; i++) {
+      const group = this.recipeIngredientsFormArray.at(i);
+      this.selectedIngredientsService
+        .getSelectedIngredientsSubjectAsObservable()
+        .subscribe((ingredients) => {
+          console.log('ingredients: ', ingredients);
+          const ingredientNames = ingredients.map(
+            (ingredient) => ingredient.ingredientName
+          );
+          if (!ingredientNames.includes(group.get('ingredientName')?.value)) {
+            console.log('deleting: ', group.get('ingredientName')?.value);
+            this.recipeIngredientsFormArray.removeAt(i);
+          }
+        });
+    }
+  };
 
   protected recipeForm = this.formBuilder.group({
     title: ['', Validators.required],
     recipeClass: ['Main Course', Validators.required],
     image: [null],
     instructions: ['', Validators.required],
-    recipeIngredientsFormArray: this.formBuilder.array([
-      this.createIngredientFormGroup(),
-    ]),
+    recipeIngredientsFormArray: this.formBuilder.array([]),
   });
+
+  protected initializeIngredients() {
+    this.selectedIngredients$.subscribe((ingredients) => {
+      const formArray = this.recipeIngredientsFormArray;
+      ingredients.forEach((ingredient) => {
+        // Check if the ingredient already exists in the form array
+        const exists = formArray.controls.some(
+          (control) => control.value.ingredientId === ingredient.ingredientId
+        );
+
+        if (!exists) {
+          // If the ingredient does not exist, add it to the form array
+          const ingredientGroup = this.formBuilder.group({
+            ingredientId: [ingredient.ingredientId],
+            ingredientName: [ingredient.ingredientName],
+            ingredientClass: [''],
+            unit: [''],
+            amount: [''],
+          });
+          formArray.push(ingredientGroup);
+        }
+      });
+    });
+  }
 
   get recipeIngredientsFormArray(): FormArray {
     return this.recipeForm.get('recipeIngredientsFormArray') as FormArray;
   }
-
-  protected createIngredientFormGroup(): FormGroup {
-    return this.formBuilder.group({
-      ingredientName: [''],
-      ingredientClass: [''],
-      unit: [''],
-      amount: [''],
-    });
-  }
-
-  protected addFormGroup = () => {
-    this.recipeIngredientsFormArray.push(this.createIngredientFormGroup());
-  };
-
-  protected removeFormGroup = (index: number) => {
-    if (this.recipeIngredientsFormArray.length > 1) {
-      this.recipeIngredientsFormArray.removeAt(index);
-    }
-  };
 
   private recipe: Recipe = {
     recipeId: 0,
@@ -95,6 +159,7 @@ export class CreateRecipeComponent implements OnInit {
   private recipeDetail: RecipeDetail = {
     recipeId: 0,
     recipeSeqNo: 0,
+    ingredientId: 0,
     ingredientName: '',
     ingredientClassName: '',
     measurementName: '',
@@ -123,11 +188,13 @@ export class CreateRecipeComponent implements OnInit {
     this.isSubmitted = true;
     if (this.recipeForm.valid) {
       let recipeSeqNo = 0;
-      this.recipeIngredientsFormArray.controls.forEach((ingredientControl: AbstractControl) => {
-        const ingredient = ingredientControl.value as Ingredient;
+      this.recipeIngredientsFormArray.controls.forEach(
+        (ingredientControl: AbstractControl) => {
+          const ingredient = ingredientControl.value as Ingredient;
           this.recipeDetail = {
             recipeId: this.newRecipeId,
             recipeSeqNo: recipeSeqNo,
+            ingredientId: ingredient.ingredientId,
             ingredientName: ingredient.ingredientName,
             ingredientClassName: ingredient.ingredientClass,
             measurementName: ingredient.unit,

@@ -27,28 +27,40 @@
 
       <label>Ingredients</label>
       <div formArrayName="recipeIngredientsFormArray" class="recipe-section">
-        @for (ingredient of recipeIngredientsFormArray.controls; track ingredient; let i = $index) {
-
-        <div [formGroupName]="i">
-          <input formControlName="ingredientName" placeholder="Ingredient Name">
-
-          <select formControlName="unit" placeholder="Unit">
-            @if ({measurements: measurements$ | async}; as data) {
-            @for(measurement of data.measurements; track measurement) {
-            <option>{{ measurement.measurementName }}</option>
+        <div class="filter-ingredients">
+          <div class="align-button-over-input">
+            <input placeholder="Filter Ingredients" (input)="onInputChange($event)">
+            <button type="submit">
+              <img src="../../assets/svg/filter.svg" />
+            </button>
+          </div>
+          @if ({ingredients: ingredients$ | async}; as data) {
+          <div formControlName="ingredientName" class="ingredients-container">
+            @for (ingredient of data.ingredients; track ingredient) {
+            <div>
+              <input type="checkbox" (change)="onCheckboxChange($event, ingredient)">
+              <option>{{ ingredient.ingredientName }}</option>
+            </div>
             }
-            }
-          </select>
-          <input type="number" formControlName="amount" placeholder="Amount" appNoNegative>
-          <button type="button" class="remove" (click)="removeFormGroup(i)">
-            <img src="../../assets/svg/trash.svg">
-          </button>
+          </div>
+          }
         </div>
-        }
-      </div>
 
-      <div class="center-content">
-        <button type="button" (click)="addFormGroup()">Add</button>
+        <div class="ingredient-list">
+          @for (ingredient of recipeIngredientsFormArray.controls; track ingredient; let i = $index) {
+          <div [formGroupName]="i">
+            <li>{{ ingredient.value.ingredientName }}</li>
+            <select formControlName="unit" placeholder="Unit">
+              @if ({measurements: measurements$ | async}; as data) {
+              @for(measurement of data.measurements; track measurement) {
+              <option>{{ measurement.measurementName }}</option>
+              }
+              }
+            </select>
+            <input type="number" formControlName="amount" placeholder="Amount" appNoNegative>
+          </div>
+          }
+        </div>
       </div>
 
       <label for="instructions">Instructions</label>

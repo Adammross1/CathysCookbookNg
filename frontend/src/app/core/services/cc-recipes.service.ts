@@ -11,9 +11,15 @@ export class CcRecipesService {
 
   private apiUrl = 'http://localhost:5202/api';
 
-  // Existing methods for fetching data
+  private ingredientsSubject = new ReplaySubject<any>(1);
+  public initializeIngredients(): void {
+    this.http.get<any>(`${this.apiUrl}/Ingredients`).subscribe((data) => {
+      this.ingredientsSubject.next(data);
+    });
+  }
+
   public getIngredients(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/Ingredients`);
+    return this.ingredientsSubject.asObservable();
   }
 
   public getRecipeDetails(): Observable<any> {
@@ -87,11 +93,19 @@ export class CcRecipesService {
     return this.http.delete(`${this.apiUrl}/${recipeId}`, { headers });
   }
 
-  private searchFilterSubject = new BehaviorSubject<string>('');
-  public setSearchFilterSubject = (search: string) => {
-    this.searchFilterSubject.next(search);
+  private searchRecipeFilterSubject = new BehaviorSubject<string>('');
+  public setSearchRecipeFilterSubject = (search: string) => {
+    this.searchRecipeFilterSubject.next(search);
   };
-  public getSearchFilterSubjectAsObservable = () => {
-    return this.searchFilterSubject;
+  public getSearchRecipeFilterSubjectAsObservable = () => {
+    return this.searchRecipeFilterSubject;
+  };
+
+  private searchIngredientsFilterSubject = new BehaviorSubject<string>('');
+  public setSearchIngredientsFilterSubject = (search: string) => {
+    this.searchIngredientsFilterSubject.next(search);
+  };
+  public getSearchIngredientsFilterSubjectAsObservable = () => {
+    return this.searchIngredientsFilterSubject;
   };
 }

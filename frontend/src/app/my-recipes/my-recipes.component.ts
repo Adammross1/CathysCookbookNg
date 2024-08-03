@@ -3,7 +3,7 @@ import { CcRecipesService } from '../core/services/cc-recipes.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { combineLatest, map } from 'rxjs';
-import { Recipe } from '../core/models/recipe'
+import { Recipe } from '../core/models/recipe';
 
 @Component({
   selector: 'app-my-recipes',
@@ -16,12 +16,14 @@ export class MyRecipesComponent {
   protected ccRecipesService = inject(CcRecipesService);
   protected searchFilter = '';
   onInputChange(event: Event) {
-    this.ccRecipesService.setSearchFilterSubject((event.target as HTMLInputElement).value);
+    this.ccRecipesService.setSearchRecipeFilterSubject(
+      (event.target as HTMLInputElement).value
+    );
   }
 
   protected myRecipes$ = combineLatest([
     this.ccRecipesService.getRecipes(),
-    this.ccRecipesService.getSearchFilterSubjectAsObservable()
+    this.ccRecipesService.getSearchRecipeFilterSubjectAsObservable(),
   ]).pipe(
     map(([data, search]) => {
       if (!search || search.trim() === '') {
