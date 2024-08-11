@@ -9,11 +9,11 @@ public partial class RecipeDetail
 
     public int RecipeSeqNo { get; set; }
 
-    public string IngredientId { get; set; } = null!;
+    public int IngredientId { get; set; }
 
-    public string IngredientClassId { get; set; } = null!;
+    public int IngredientClassId { get; set; }
 
-    public string MeasurementId { get; set; } = null!;
+    public int MeasurementId { get; set; }
 
     public double Amount { get; set; }
 }

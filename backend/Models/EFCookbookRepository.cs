@@ -44,5 +44,32 @@ namespace CathysCookbookAPI.Models
         {
             return _cookbookContext.RecipeClasses.Find(recipeClassId);
         }
+
+        public Ingredient GetIngredientNameById(int ingredientID)
+        {
+            return _cookbookContext.Ingredients.Find(ingredientID);
+        }
+
+        public IngredientClass GetIngredientClassNameById(int ingredientClassID)
+        {
+            return _cookbookContext.IngredientClasses.Find(ingredientClassID);
+        }
+
+        public MeasurementUnit GetMeasurementNameById(int measurementID)
+        {
+            return _cookbookContext.MeasurementUnits.Find(measurementID);
+        }
+
+        public Recipe GetRecipeById(int recipeId)
+        {
+            return _cookbookContext.Recipes.Find(recipeId);
+        }
+
+        public IEnumerable<RecipeDetail> GetRecipeDetailsByRecipeId(int recipeId)
+    {
+        return _cookbookContext.RecipeDetails
+            .Where(rd => rd.RecipeId == recipeId)
+            .ToList();
+    }
     }
 }
