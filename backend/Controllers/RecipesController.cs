@@ -8,7 +8,7 @@ namespace CathysCookbookAPI.Controllers
     [ApiController]
     public class RecipesController : ControllerBase
     {
-        private readonly ICookbookRepository _cookbookRepository;
+                private readonly ICookbookRepository _cookbookRepository;
 
         public RecipesController(ICookbookRepository cookbookRepository)
         {
@@ -16,21 +16,31 @@ namespace CathysCookbookAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Recipe> Get()
-        {
-            return _cookbookRepository.Recipes;
-        }
-
-        [HttpGet("{recipeId}")]
-        public ActionResult<IEnumerable<Recipe>> GetByRecipeId(int recipeId)
-        {
-            var recipe = _cookbookRepository.Recipes.Where(rd => rd.RecipeId == recipeId).ToList();
-            if (!recipe.Any())
+        public IActionResult Get()
+{
+        var recipes = _cookbookRepository.Recipes
+            .Select(recipe => new
             {
-                return NotFound();
-            }
-            return recipe;
-        }
+                recipeId = recipe.RecipeId,
+                recipeTitle = recipe.RecipeTitle,
+                instructions = recipe.Instructions,
+                recipeClassName = _cookbookRepository.GetRecipeClassById(recipe.RecipeClassId)?.RecipeClassName,
+                image = recipe.Image
+            });
+
+        return Ok(recipes);
+}
+
+        // [HttpGet("{recipeId}")]
+        // public ActionResult<IEnumerable<Recipe>> GetByRecipeId(int recipeId)
+        // {
+        //     var recipe = _cookbookRepository.Recipes.Where(rd => rd.RecipeId == recipeId).ToList();
+        //     if (!recipe.Any())
+        //     {
+        //         return NotFound();
+        //     }
+        //     return recipe;
+        // }
 
         [HttpPost]
         public ActionResult<Recipe> CreateRecipe(Recipe recipe)

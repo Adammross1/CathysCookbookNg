@@ -13,5 +13,7 @@ public partial class Recipe
 
     public string Instructions { get; set; } = null!;
 
-    public required string RecipeClassName { get; set; }
+    public int RecipeClassId { get; set; }
+
+    public byte[]? Image { get; set; }
 }

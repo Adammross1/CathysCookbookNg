@@ -14,8 +14,8 @@
   .form-container {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
-    margin-bottom: 5rem;
+    padding: 2rem 2rem 5rem 2rem;
+    background-color: #f9f9f9;
     .main-fields {
       display: flex;
       flex-direction: column;
@@ -94,7 +94,7 @@
       .filter-ingredients {
         border: 1px solid $border-color;
         border-radius: 1rem;
-        background-color: #F0F0F0;
+        background-color: #fff;
         .align-button-over-input {
           display: flex;
           flex-direction: row;
@@ -105,7 +105,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #FFF;
+            background-color: #fff;
             border: 2px solid #ccc;
             border-radius: 1rem;
             margin-left: -3rem;
@@ -125,7 +125,8 @@
           height: 8rem;
           width: 30rem;
           overflow-y: auto;
-          background-color: #FFF;
+          background-color: #f9f9f9;
+          border: 1px solid $border-color;
           border-top-left-radius: 1rem;
           border-bottom-left-radius: 1rem;
           option {

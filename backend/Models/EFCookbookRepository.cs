@@ -39,5 +39,10 @@ namespace CathysCookbookAPI.Models
                 Console.WriteLine($"Error adding recipe: {ex.Message}");
             }
         }
+
+        public RecipeClass GetRecipeClassById(int recipeClassId)
+        {
+            return _cookbookContext.RecipeClasses.Find(recipeClassId);
+        }
     }
 }
