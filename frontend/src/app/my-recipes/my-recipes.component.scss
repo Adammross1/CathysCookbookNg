@@ -2,6 +2,9 @@
 
 .container {
   height: 89vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: $dark-purple $background-purple;
   background-color: #fff;
   .header {
     background-color: $dark-purple;
@@ -45,7 +48,7 @@
       }
     }
   }
-  
+
   .recipes-container {
     background-color: #fff;
     min-height: 10rem;
@@ -54,11 +57,7 @@
     align-items: center;
     padding: 2rem;
     .scroll {
-      max-height: 45vh;
       width: 100%;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: $dark-purple $background-purple;
       div {
         display: flex;
         align-items: center;
