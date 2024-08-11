@@ -47,7 +47,7 @@ export class MealPrepComponent {
   ]).pipe(
     map(([ingredients, selectedRecipes]) => {
       const recipeDetails: RecipeDetail[] = [];
-
+      console.log(ingredients)
       selectedRecipes.forEach((recipe: Recipe) => {
         ingredients
           .filter(

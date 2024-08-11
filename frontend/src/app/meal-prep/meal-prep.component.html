@@ -46,7 +46,7 @@
     @if ({ingredients: shoppingList$ | async}; as data) {
     <h3>List</h3>
     @for (ingredient of data.ingredients; track ingredient.ingredientName) {
-    <p>{{ ingredient.ingredientName }} - {{ingredient.amount}}</p>
+    <p>ingredient {{ ingredient.ingredientName }} - {{ingredient.amount}}</p>
     }
     }
   </div>

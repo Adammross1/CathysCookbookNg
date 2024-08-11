@@ -1,9 +1,9 @@
 namespace CathysCookbookAPI.Models;
 public class RecipeDetailDTO
   {
-      public Ingredient IngredientName { get; set; }
-      public IngredientClass IngredientClassName { get; set; }
-      public MeasurementUnit MeasurementName { get; set; }
+      public string IngredientName { get; set; }
+      public string IngredientClassName { get; set; }
+      public string MeasurementName { get; set; }
       public double Amount { get; set; }
   }
 

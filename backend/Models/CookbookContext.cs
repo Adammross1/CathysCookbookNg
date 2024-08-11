@@ -37,20 +37,20 @@ public partial class CookbookContext : DbContext
     {
         modelBuilder.Entity<Ingredient>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("ingredients");
+            entity.ToTable("ingredients");
 
-            entity.Property(e => e.IngredientId).HasColumnName("IngredientID");
+            entity.Property(e => e.IngredientId)
+                .ValueGeneratedNever()
+                .HasColumnName("IngredientID");
         });
 
         modelBuilder.Entity<IngredientClass>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("ingredient_class");
+            entity.ToTable("ingredient_class");
 
-            entity.Property(e => e.IngredientClassId).HasColumnName("IngredientClassID");
+            entity.Property(e => e.IngredientClassId)
+                .ValueGeneratedNever()
+                .HasColumnName("IngredientClassID");
         });
 
         modelBuilder.Entity<List>(entity =>
@@ -62,11 +62,13 @@ public partial class CookbookContext : DbContext
 
         modelBuilder.Entity<MeasurementUnit>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("measurement_units");
+            entity.HasKey(e => e.MeasurementId);
 
-            entity.Property(e => e.MeasurementId).HasColumnName("MeasurementID");
+            entity.ToTable("measurement_units");
+
+            entity.Property(e => e.MeasurementId)
+                .ValueGeneratedNever()
+                .HasColumnName("MeasurementID");
         });
 
         modelBuilder.Entity<Recipe>(entity =>
@@ -94,15 +96,9 @@ public partial class CookbookContext : DbContext
                 .HasNoKey()
                 .ToTable("recipe_details");
 
-            entity.Property(e => e.IngredientClassId)
-                .HasColumnType("INTEGER")
-                .HasColumnName("IngredientClassID");
-            entity.Property(e => e.IngredientId)
-                .HasColumnType("INTEGER")
-                .HasColumnName("IngredientID");
-            entity.Property(e => e.MeasurementId)
-                .HasColumnType("INTEGER")
-                .HasColumnName("MeasurementID");
+            entity.Property(e => e.IngredientClassId).HasColumnName("IngredientClassID");
+            entity.Property(e => e.IngredientId).HasColumnName("IngredientID");
+            entity.Property(e => e.MeasurementId).HasColumnName("MeasurementID");
             entity.Property(e => e.RecipeId).HasColumnName("RecipeID");
         });
 

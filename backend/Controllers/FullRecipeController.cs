@@ -34,9 +34,9 @@ namespace CathysCookbookAPI.Controllers
                 RecipeClassName = recipeClass?.RecipeClassName,
                 RecipeDetails = recipeDetails.Select(rd => new RecipeDetailDTO
                 {
-                    IngredientName = _cookbookRepository.GetIngredientNameById(rd.IngredientId),
-                    IngredientClassName = _cookbookRepository.GetIngredientClassNameById(rd.IngredientClassId),
-                    MeasurementName = _cookbookRepository.GetMeasurementNameById(rd.MeasurementId),
+                    IngredientName = _cookbookRepository.GetIngredientNameById(rd.IngredientId).IngredientName,
+                    IngredientClassName = _cookbookRepository.GetIngredientClassNameById(rd.IngredientClassId).IngredientClassName,
+                    MeasurementName = _cookbookRepository.GetMeasurementNameById(rd.MeasurementId).MeasurementName,
                     Amount = rd.Amount
                 }).ToList()
             };

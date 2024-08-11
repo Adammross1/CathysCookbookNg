@@ -31,7 +31,7 @@ export class CcRecipesService {
   }
 
   public getRecipeByID = (recipeId: number) => {
-    return this.http.get<any>(`${this.apiUrl}/Recipes/${recipeId}`);
+    return this.http.get<any>(`${this.apiUrl}/FullRecipe/${recipeId}`);
   };
 
   private recipeClassesSubject = new ReplaySubject<any>(1);

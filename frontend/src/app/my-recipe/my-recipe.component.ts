@@ -14,12 +14,12 @@ import { CommonModule } from '@angular/common';
 export class MyRecipeComponent {
   private ccRecipesService = inject(CcRecipesService);
   protected route = inject(ActivatedRoute);
-  protected selectedId: number = 0;
 
   protected recipe$ = this.route.paramMap.pipe(
     switchMap((params) => {
-      this.selectedId = Number(params.get('id'));
-      return this.ccRecipesService.getRecipeByID(this.selectedId);
+      const selectedId = Number(params.get('id'));
+      console.log(selectedId);
+      return this.ccRecipesService.getRecipeByID(selectedId);
     })
   );
 

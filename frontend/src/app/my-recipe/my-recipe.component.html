@@ -1,9 +1,9 @@
 @if ({recipe: recipe$ | async}; as data) {
 <div class="recipe-container">
   <div class="header-container">
-    <h1>{{ data.recipe[0].recipeTitle }}</h1>
+    <h1>{{ data.recipe.recipeTitle }}</h1>
     <div>
-      <p class="pill">{{ data.recipe[0].recipeClassName }}</p>
+      <p class="pill">{{ data.recipe.recipeClassName }}</p>
     </div>
     <!-- <button (click)="deleteRecipe()">Delete</button> -->
   </div>
@@ -15,7 +15,7 @@
   <div class="instructions-container">
     <h3 class="instructions">Instructions</h3>
     <div class="item">
-      <p>{{ data.recipe[0].instructions }}</p>
+      <p>{{ data.recipe.instructions }}</p>
     </div>
   </div>
 
@@ -23,9 +23,9 @@
     <h3 class="ingredients">Ingredients</h3>
     <div class="item">
       <ul>
-        <!-- @for (ingredient of data.recipe.ingredients; track ingredient) {
-        <li>{{ ingredient }}</li>
-        } -->
+        @for (ingredient of data.recipe.recipeDetails; track ingredient) {
+        <li>{{ ingredient.ingredientName }} - {{ ingredient.amount }} {{ ingredient.measurementName }}</li>
+        }
       </ul>
     </div>
   </div>
