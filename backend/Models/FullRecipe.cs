@@ -9,6 +9,7 @@ public class RecipeDetailDTO
 
   public class FullRecipe
   {
+      public int RecipeId { get; set; }
       public string RecipeTitle { get; set; }
       public string Instructions { get; set; }
       public string RecipeClassName { get; set; }

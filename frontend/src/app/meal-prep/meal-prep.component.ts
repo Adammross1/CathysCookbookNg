@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CcRecipesService } from '../core/services/cc-recipes.service';
 import { CommonModule } from '@angular/common';
 import { combineLatest, map, Observable } from 'rxjs';
-import { Recipe, RecipeDetail } from '../core/models/recipe';
+import { Ingredient, Recipe, RecipeDetail } from '../core/models/recipe';
 import { SelectedRecipesService } from '../core/services/selected-recipes.service';
 
 @Component({
@@ -41,34 +41,30 @@ export class MealPrepComponent {
   protected selectedRecipes$ =
     this.selectedRecipesService.getSelectedRecipesSubjectAsObservable();
 
-  shoppingList$ = combineLatest([
-    this.ccRecipesService.getRecipeDetails(),
-    this.selectedRecipesService.getSelectedRecipesSubjectAsObservable(),
-  ]).pipe(
-    map(([ingredients, selectedRecipes]) => {
-      const recipeDetails: RecipeDetail[] = [];
-      console.log(ingredients)
-      selectedRecipes.forEach((recipe: Recipe) => {
-        ingredients
-          .filter(
-            (ingredient: RecipeDetail) =>
-              ingredient.recipeId === recipe.recipeId
-          )
-          .forEach((ingredient: RecipeDetail) => {
-            const existingIngredient = recipeDetails.find(
-              (item) => item.ingredientName === ingredient.ingredientName
+  protected shoppingList$ = this.selectedRecipesService
+    .getSelectedRecipesSubjectAsObservable()
+    .pipe(
+      map((recipes) => {
+        const shoppingList: Ingredient[] = [];
+
+        recipes.forEach((recipe: Recipe) => {
+          const ingredients = recipe.recipeDetails;
+
+          ingredients.forEach((ingredient) => {
+            const existingIngredient = shoppingList.find(
+              (i) => i.ingredientName === ingredient.ingredientName
             );
+
             if (existingIngredient) {
               existingIngredient.amount += ingredient.amount;
             } else {
-              recipeDetails.push({ ...ingredient });
+              shoppingList.push({ ...ingredient });
             }
           });
-      });
-
-      return recipeDetails;
-    })
-  );
+        });
+        return shoppingList;
+      })
+    );
 
   protected onCheckboxChange(event: any, recipe: Recipe) {
     if (event.target.checked) {

@@ -3,6 +3,7 @@ export interface Recipe {
   recipeTitle: string;
   instructions: string;
   recipeClassName: string;
+  recipeDetails: Ingredient[];
 }
 
 export interface RecipeDetail {
@@ -19,6 +20,6 @@ export interface Ingredient {
   ingredientId: number;
   ingredientName: string;
   ingredientClass: string;
-  unit: string;
+  measurementName: string;
   amount: number;
 }

@@ -26,28 +26,48 @@
             <p class="pill">{{ recipe.recipeClassName }}</p>
           </div>
         </div>
-        <p>{{ recipe.instructions }}</p>
+        <div class="align-ingredients">
+          @for (ingredient of recipe.recipeDetails; track ingredient) {
+          <p>{{ ingredient.ingredientName }},</p>
+          }
+        </div>
         }
       </div>
     </div>
     }
   </div>
 
-  <div class="shopping list">
+  <div class="shopping-list">
     <h1>Shopping List</h1>
     @if ({recipes: selectedRecipes$ | async}; as data) {
-    <h3>Selected Recipes</h3>
     <div class="selected-recipes">
+      <h3>Selected Recipes:</h3>
       @for (recipe of data.recipes; track recipe) {
       <p>{{recipe.recipeTitle}}</p>
       }
     </div>
     }
     @if ({ingredients: shoppingList$ | async}; as data) {
-    <h3>List</h3>
-    @for (ingredient of data.ingredients; track ingredient.ingredientName) {
-    <p>ingredient {{ ingredient.ingredientName }} - {{ingredient.amount}}</p>
-    }
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Ingredient</th>
+            <th>Amount</th>
+            <th>Unit</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (ingredient of data.ingredients; track ingredient.ingredientId) {
+          <tr>
+            <td>{{ ingredient.ingredientName }}</td>
+            <td>{{ingredient.amount}}</td>
+            <td>{{ingredient.measurementName}}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
     }
   </div>
 </div>

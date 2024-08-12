@@ -19,7 +19,9 @@ export class SelectedRecipesService {
   }
 
   public removeRecipeFromSelectedRecipes(recipe: Recipe) {
-    this.selectedRecipes = this.selectedRecipes.filter(r => r.recipeId !== recipe.recipeId);
+    this.selectedRecipes = this.selectedRecipes.filter(
+      (r) => r.recipeId !== recipe.recipeId
+    );
     this.selectedRecipesSubject.next(this.selectedRecipes);
   }
 }

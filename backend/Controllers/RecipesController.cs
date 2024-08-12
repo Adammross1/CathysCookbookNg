@@ -17,30 +17,32 @@ namespace CathysCookbookAPI.Controllers
 
         [HttpGet]
         public IActionResult Get()
-{
-        var recipes = _cookbookRepository.Recipes
-            .Select(recipe => new
-            {
-                recipeId = recipe.RecipeId,
-                recipeTitle = recipe.RecipeTitle,
-                instructions = recipe.Instructions,
-                recipeClassName = _cookbookRepository.GetRecipeClassById(recipe.RecipeClassId)?.RecipeClassName,
-                image = recipe.Image
-            });
+        {
+            var recipes = _cookbookRepository.Recipes
+                .Select(recipe => 
+                {
+                    var recipeClass = _cookbookRepository.GetRecipeClassById(recipe.RecipeClassId);
+                    var recipeDetails = _cookbookRepository.GetRecipeDetailsByRecipeId(recipe.RecipeId);
 
-        return Ok(recipes);
-}
+                    return new FullRecipe
+                    {
+                        RecipeId = recipe.RecipeId,
+                        RecipeTitle = recipe.RecipeTitle,
+                        Instructions = recipe.Instructions,
+                        RecipeClassName = recipeClass?.RecipeClassName,
+                        RecipeDetails = recipeDetails.Select(rd => new RecipeDetailDTO
+                        {
+                            IngredientName = _cookbookRepository.GetIngredientNameById(rd.IngredientId).IngredientName,
+                            IngredientClassName = _cookbookRepository.GetIngredientClassNameById(rd.IngredientClassId).IngredientClassName,
+                            MeasurementName = _cookbookRepository.GetMeasurementNameById(rd.MeasurementId).MeasurementName,
+                            Amount = rd.Amount
+                        }).ToList()
+                    };
+                })
+                .ToList();
 
-        // [HttpGet("{recipeId}")]
-        // public ActionResult<IEnumerable<Recipe>> GetByRecipeId(int recipeId)
-        // {
-        //     var recipe = _cookbookRepository.Recipes.Where(rd => rd.RecipeId == recipeId).ToList();
-        //     if (!recipe.Any())
-        //     {
-        //         return NotFound();
-        //     }
-        //     return recipe;
-        // }
+            return Ok(recipes);
+        }
 
         [HttpPost]
         public ActionResult<Recipe> CreateRecipe(Recipe recipe)

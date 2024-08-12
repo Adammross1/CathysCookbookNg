@@ -52,12 +52,13 @@
 
     .recipes-container {
       background-color: #fff;
-      min-height: 10rem;
+      min-height: 70vh;
       display: flex;
       justify-content: left;
       align-items: center;
+      border-right: 1px solid $dark-purple;
       .scroll {
-        max-height: 70vh;
+        height: 70vh;
         width: 100%;
         overflow-y: auto;
         scrollbar-width: thin;
@@ -94,6 +95,16 @@
             }
           }
         }
+        .align-ingredients {
+          display: flex;
+          flex-wrap: wrap;
+          p {
+            color: $light-purple;
+            font-size: 1rem;
+            font-family: $sans-serif-font;
+            margin-right: -1.2rem;
+          }
+        }
         p {
           color: $light-purple;
           margin: 0 0 1rem 2rem;
@@ -105,7 +116,76 @@
 
   .shopping-list {
     grid-column: 2 / span 2;
+    background-color: #fff;
+
+    h1 {
+      color: $dark-purple;
+      font-family: $serif-font;
+      font-weight: bold;
+      margin: 1rem;
+      text-align: center;
+    }
     .selected-recipes {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
+      margin: 1rem 5rem;
+      h3 {
+        color: $light-purple;
+        font-size: 1.5rem;
+        font-family: $sans-serif-font;
+      }
+      p {
+        color: $light-purple;
+        font-size: 1.25rem;
+        margin: 0.5rem;
+        font-family: $sans-serif-font;
+      }
+    }
+    .table-container {
+      display: flex;
+      justify-content: center;
+      max-height: 50vh;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: $dark-purple $background-purple;
+      table {
+        width: 100%;
+        margin: 2rem 5rem;
+        border-collapse: collapse;
+        font-family: $sans-serif-font;
+        thead {
+          background-color: #f5f5f5;
+          th {
+            padding: 1rem 1.5rem;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid #ddd;
+            border-bottom: 2px solid #ddd;
+            color: $light-purple;
+          }
+        }
+
+        tbody {
+          color: #777;
+          tr {
+            &:hover {
+              background-color: #f5f5f5;
+            }
+
+            td {
+              padding: 12px 15px;
+              text-align: left;
+              border: 1px solid #ddd;
+
+              &:first-child {
+                font-weight: bold;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

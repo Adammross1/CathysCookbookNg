@@ -154,6 +154,7 @@ export class CreateRecipeComponent implements OnInit {
     recipeTitle: '',
     instructions: '',
     recipeClassName: '',
+    recipeDetails: [],
   };
 
   private recipeDetail: RecipeDetail = {
@@ -176,6 +177,7 @@ export class CreateRecipeComponent implements OnInit {
         recipeTitle: this.recipeForm.controls.title.value!,
         instructions: this.recipeForm.controls.instructions.value!,
         recipeClassName: this.recipeForm.controls.recipeClass.value!,
+        recipeDetails: [],
       };
       this.ccRecipesService.addRecipe(this.recipe).subscribe();
     } else {
@@ -197,7 +199,7 @@ export class CreateRecipeComponent implements OnInit {
             ingredientId: ingredient.ingredientId,
             ingredientName: ingredient.ingredientName,
             ingredientClassName: ingredient.ingredientClass,
-            measurementName: ingredient.unit,
+            measurementName: ingredient.measurementName,
             amount: ingredient.amount,
           };
           this.ccRecipesService

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CathysCookbookAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+229487c8860b967a7f9579932ff3b77d25d4ef49")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+36a6471bf14df75dd3987c7caed69526303d2d58")]
 [assembly: System.Reflection.AssemblyProductAttribute("CathysCookbookAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CathysCookbookAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
