@@ -5,6 +5,7 @@ import { TabsService } from '../core/services/tabs.service';
 import { MyRecipesComponent } from '../my-recipes/my-recipes.component';
 import { ListsComponent } from '../lists/lists.component';
 import { COOKBOOKS_TABS, TABS_DISPLAY_MAP, tabOption } from '../core/constants';
+import { CcRecipesService } from '../core/services/cc-recipes.service';
 
 @Component({
   selector: 'app-cookbook-tabs',
@@ -20,6 +21,7 @@ import { COOKBOOKS_TABS, TABS_DISPLAY_MAP, tabOption } from '../core/constants';
 })
 export class CookbookTabsComponent {
   protected tabsService = inject(TabsService);
+  protected ccRecipesService = inject(CcRecipesService);
   protected selectedTab$ =
     this.tabsService.getCookbookTabSelectionSubjectAsObservable();
   protected tabs = COOKBOOKS_TABS;
@@ -27,5 +29,6 @@ export class CookbookTabsComponent {
 
   protected selectTab = (tabName: tabOption): void => {
     this.tabsService.changeCookbookTab(tabName);
+    this.ccRecipesService.setSearchRecipeFilterSubject('');
   };
 }

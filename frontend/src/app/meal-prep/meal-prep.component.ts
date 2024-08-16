@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { combineLatest, map, Observable } from 'rxjs';
 import { Ingredient, Recipe, RecipeDetail } from '../core/models/recipe';
 import { SelectedRecipesService } from '../core/services/selected-recipes.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-meal-prep',
@@ -15,6 +16,7 @@ import { SelectedRecipesService } from '../core/services/selected-recipes.servic
 export class MealPrepComponent {
   private ccRecipesService = inject(CcRecipesService);
   private selectedRecipesService = inject(SelectedRecipesService);
+  protected route = inject(ActivatedRoute);
   protected searchFilter = '';
   onInputChange(event: Event) {
     this.ccRecipesService.setSearchRecipeFilterSubject(
@@ -46,7 +48,6 @@ export class MealPrepComponent {
     .pipe(
       map((recipes) => {
         const shoppingList: RecipeDetail[] = [];
-
         recipes.forEach((recipe: Recipe) => {
           const ingredients = recipe.recipeDetails;
 

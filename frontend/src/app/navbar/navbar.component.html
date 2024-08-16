@@ -6,7 +6,9 @@
     <li>
       <a [routerLink]="['search']" routerLinkActive="activebutton" ariaCurrentWhenActive="page">Search</a>
     </li>
-    <li><a [routerLink]="['cookbooks']" routerLinkActive="activebutton" ariaCurrentWhenActive="page">Cookbooks</a></li>
-    <li><a [routerLink]="['meal-prep']" routerLinkActive="activebutton" ariaCurrentWhenActive="page">Meal Prep</a></li>
+    <li><a [routerLink]="['cookbooks']" routerLinkActive="activebutton" ariaCurrentWhenActive="page"
+        (click)="resetRecipeFilter()">Cookbooks</a></li>
+    <li><a [routerLink]="['meal-prep']" routerLinkActive="activebutton" ariaCurrentWhenActive="page"
+        (click)="resetRecipeFilter()">Meal Prep</a></li>
   </ul>
 </div>
