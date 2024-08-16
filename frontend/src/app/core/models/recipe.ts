@@ -3,7 +3,7 @@ export interface Recipe {
   recipeTitle: string;
   instructions: string;
   recipeClassName: string;
-  recipeDetails: Ingredient[];
+  recipeDetails: RecipeDetail[];
 }
 
 export interface RecipeDetail {
@@ -22,4 +22,9 @@ export interface Ingredient {
   ingredientClass: string;
   measurementName: string;
   amount: number;
+}
+
+export interface RecipeClass {
+  recipeClassId: number;
+  recipeClassName: string;
 }

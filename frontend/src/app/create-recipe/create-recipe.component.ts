@@ -177,7 +177,7 @@ export class CreateRecipeComponent implements OnInit {
         recipeTitle: this.recipeForm.controls.title.value!,
         instructions: this.recipeForm.controls.instructions.value!,
         recipeClassName: this.recipeForm.controls.recipeClass.value!,
-        recipeDetails: [],
+        recipeDetails: this.addRecipeDetails(),
       };
       this.ccRecipesService.addRecipe(this.recipe).subscribe();
     } else {
@@ -186,29 +186,69 @@ export class CreateRecipeComponent implements OnInit {
     this.isSubmitted = false;
   };
 
+  //   this.recipeClasses$
+  //   .pipe(
+  //     map((classes) => {
+  //       // Find the matching recipe class
+  //       const matchingClass = classes.find(
+  //         (cls: RecipeClass) => cls.recipeClassName === recipeClass
+  //       );
+
+  //       if (matchingClass) {
+  //         // Return the recipeClassId
+  //         return matchingClass.id;
+  //       } else {
+  //         // Handle the case where the recipe class is not found
+  //         console.error('Recipe class not found');
+  //         return null;
+  //       }
+  //     })
+  //   )
+  //   .subscribe((recipeClassId) => {
+  //     // Proceed only if recipeClassId is found
+  //     if (recipeClassId !== null) {
+  //       if (this.recipeForm.valid) {
+  //         this.recipe = {
+  //           recipeId: this.newRecipeId,
+  //           recipeTitle: this.recipeForm.controls.title.value!,
+  //           instructions: this.recipeForm.controls.instructions.value!,
+  //           recipeClassName: recipeClassId,
+  //           recipeDetails: this.addRecipeDetails(),
+  //         };
+  //         console.log(this.recipe);
+  //         this.ccRecipesService.addRecipe(this.recipe).subscribe({
+  //           next: () => console.log('Recipe added successfully'),
+  //           error: (err) => console.error('Error adding recipe:', err),
+  //         });
+  //       } else {
+  //         alert('Form is not valid');
+  //       }
+  //     } else {
+  //       alert('Recipe class not found');
+  //     }
+  //     this.isSubmitted = false;
+  //   });
+  // };
+
   protected addRecipeDetails = () => {
-    this.isSubmitted = true;
-    if (this.recipeForm.valid) {
-      let recipeSeqNo = 0;
-      this.recipeIngredientsFormArray.controls.forEach(
-        (ingredientControl: AbstractControl) => {
-          const ingredient = ingredientControl.value as Ingredient;
-          this.recipeDetail = {
-            recipeId: this.newRecipeId,
-            recipeSeqNo: recipeSeqNo,
-            ingredientId: ingredient.ingredientId,
-            ingredientName: ingredient.ingredientName,
-            ingredientClassName: ingredient.ingredientClass,
-            measurementName: ingredient.measurementName,
-            amount: ingredient.amount,
-          };
-          this.ccRecipesService
-            .addRecipeIngredient(this.recipeDetail)
-            .subscribe();
-          recipeSeqNo++;
-        }
-      );
-    }
-    this.isSubmitted = false;
+    let recipeSeqNo = 0;
+    let recipeDetails: RecipeDetail[] = [];
+    this.recipeIngredientsFormArray.controls.forEach(
+      (ingredientControl: AbstractControl) => {
+        const ingredient = ingredientControl.value as RecipeDetail;
+        this.recipeDetail = {
+          recipeId: this.newRecipeId,
+          recipeSeqNo: recipeSeqNo,
+          ingredientId: ingredient.ingredientId,
+          ingredientName: ingredient.ingredientName,
+          ingredientClassName: ingredient.ingredientClassName,
+          measurementName: ingredient.measurementName,
+          amount: ingredient.amount,
+        };
+        recipeDetails.push(ingredient);
+        recipeSeqNo++;
+      }
+    );
+    return recipeDetails;
   };
 }

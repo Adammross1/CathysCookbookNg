@@ -74,19 +74,19 @@ export class CcRecipesService {
     });
   }
 
-  public addRecipeIngredient(
-    recipeDetail: RecipeDetail
-  ): Observable<RecipeDetail> {
-    console.log('recipeDetail called', recipeDetail);
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<RecipeDetail>(
-      `${this.apiUrl}/RecipeDetails`,
-      recipeDetail,
-      {
-        headers: headers,
-      }
-    );
-  }
+  // public addRecipeIngredient(
+  //   recipeDetail: RecipeDetail
+  // ): Observable<RecipeDetail> {
+  //   console.log('recipeDetail called', recipeDetail);
+  //   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  //   return this.http.post<RecipeDetail>(
+  //     `${this.apiUrl}/RecipeDetails`,
+  //     recipeDetail,
+  //     {
+  //       headers: headers,
+  //     }
+  //   );
+  // }
 
   public deleteRecipe(recipeId: number) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });

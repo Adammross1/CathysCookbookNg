@@ -45,7 +45,7 @@ export class MealPrepComponent {
     .getSelectedRecipesSubjectAsObservable()
     .pipe(
       map((recipes) => {
-        const shoppingList: Ingredient[] = [];
+        const shoppingList: RecipeDetail[] = [];
 
         recipes.forEach((recipe: Recipe) => {
           const ingredients = recipe.recipeDetails;

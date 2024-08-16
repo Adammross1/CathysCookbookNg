@@ -7,7 +7,7 @@ import { tabOption } from '../constants';
 })
 export class TabsService {
   private cookbookTabSelectionSubject = new BehaviorSubject<tabOption>(
-    'cookbooks'
+    'newRecipe'
   );
 
   public getCookbookTabSelectionSubjectAsObservable() {
