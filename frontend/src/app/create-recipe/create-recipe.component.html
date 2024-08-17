@@ -50,8 +50,17 @@
           @for (ingredient of recipeIngredientsFormArray.controls; track ingredient; let i = $index) {
           <div [formGroupName]="i">
             <li>{{ ingredient.value.ingredientName }}</li>
+            <select formControlName="ingredientClass" placeholder="Ingredient Class">
+              @if ({ingredientClasses: ingredientClasses$ | async}; as data) {
+              <option>Class</option>
+              @for(class of data.ingredientClasses; track class) {
+              <option>{{ class.ingredientClassName }}</option>
+              }
+              }
+            </select>
             <select formControlName="unit" placeholder="Unit">
               @if ({measurements: measurements$ | async}; as data) {
+              <option>Unit</option>
               @for(measurement of data.measurements; track measurement) {
               <option>{{ measurement.measurementName }}</option>
               }
