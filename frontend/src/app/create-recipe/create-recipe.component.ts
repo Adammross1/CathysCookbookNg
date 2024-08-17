@@ -46,7 +46,6 @@ export class CreateRecipeComponent implements OnInit {
   private recipeDetail: RecipeDetail = {
     recipeId: 0,
     recipeSeqNo: 0,
-    ingredientId: 0,
     ingredientName: '',
     ingredientClassName: '',
     measurementName: '',
@@ -106,50 +105,6 @@ export class CreateRecipeComponent implements OnInit {
     })
   );
 
-  //   this.recipeClasses$
-  //   .pipe(
-  //     map((classes) => {
-  //       // Find the matching recipe class
-  //       const matchingClass = classes.find(
-  //         (cls: RecipeClass) => cls.recipeClassName === recipeClass
-  //       );
-
-  //       if (matchingClass) {
-  //         // Return the recipeClassId
-  //         return matchingClass.id;
-  //       } else {
-  //         // Handle the case where the recipe class is not found
-  //         console.error('Recipe class not found');
-  //         return null;
-  //       }
-  //     })
-  //   )
-  //   .subscribe((recipeClassId) => {
-  //     // Proceed only if recipeClassId is found
-  //     if (recipeClassId !== null) {
-  //       if (this.recipeForm.valid) {
-  //         this.recipe = {
-  //           recipeId: this.newRecipeId,
-  //           recipeTitle: this.recipeForm.controls.title.value!,
-  //           instructions: this.recipeForm.controls.instructions.value!,
-  //           recipeClassName: recipeClassId,
-  //           recipeDetails: this.addRecipeDetails(),
-  //         };
-  //         console.log(this.recipe);
-  //         this.ccRecipesService.addRecipe(this.recipe).subscribe({
-  //           next: () => console.log('Recipe added successfully'),
-  //           error: (err) => console.error('Error adding recipe:', err),
-  //         });
-  //       } else {
-  //         alert('Form is not valid');
-  //       }
-  //     } else {
-  //       alert('Recipe class not found');
-  //     }
-  //     this.isSubmitted = false;
-  //   });
-  // };
-
   // Methods
 
   protected onInputChange(event: Event) {
@@ -163,11 +118,6 @@ export class CreateRecipeComponent implements OnInit {
       this.selectedIngredientsService.setSelectedIngredientsSubjectAsObservable(
         ingredient
       );
-      this.selectedIngredientsService
-        .getSelectedIngredientsSubjectAsObservable()
-        .subscribe((data) => {
-          console.log(data);
-        });
     } else {
       this.selectedIngredientsService.removeIngredientFromSelectedIngredients(
         ingredient
@@ -182,12 +132,10 @@ export class CreateRecipeComponent implements OnInit {
       this.selectedIngredientsService
         .getSelectedIngredientsSubjectAsObservable()
         .subscribe((ingredients) => {
-          console.log('ingredients: ', ingredients);
           const ingredientNames = ingredients.map(
             (ingredient) => ingredient.ingredientName
           );
           if (!ingredientNames.includes(group.get('ingredientName')?.value)) {
-            console.log('deleting: ', group.get('ingredientName')?.value);
             this.recipeIngredientsFormArray.removeAt(i);
           }
         });
@@ -208,8 +156,8 @@ export class CreateRecipeComponent implements OnInit {
           const ingredientGroup = this.formBuilder.group({
             ingredientId: [ingredient.ingredientId],
             ingredientName: [ingredient.ingredientName],
-            ingredientClass: [''],
-            unit: [''],
+            ingredientClassName: [''],
+            measurementName: [''],
             amount: [''],
           });
           formArray.push(ingredientGroup);
@@ -229,8 +177,8 @@ export class CreateRecipeComponent implements OnInit {
         recipeClassName: this.recipeForm.controls.recipeClass.value!,
         recipeDetails: this.addRecipeDetails(),
       };
-      this.ccRecipesService.addRecipe(this.recipe).subscribe();
       console.log(this.recipe);
+      this.ccRecipesService.addRecipe(this.recipe).subscribe();
     } else {
       alert('not valid');
     }
@@ -246,15 +194,16 @@ export class CreateRecipeComponent implements OnInit {
         this.recipeDetail = {
           recipeId: this.newRecipeId,
           recipeSeqNo: recipeSeqNo,
-          ingredientId: ingredient.ingredientId,
           ingredientName: ingredient.ingredientName,
           ingredientClassName: ingredient.ingredientClassName,
           measurementName: ingredient.measurementName,
           amount: ingredient.amount,
         };
+        console.log(ingredient);
+        console.log(ingredient.ingredientClassName);
+        console.log(ingredient.measurementName);
         recipeDetails.push(this.recipeDetail);
         recipeSeqNo++;
-        console.log(recipeDetails);
       }
     );
     return recipeDetails;

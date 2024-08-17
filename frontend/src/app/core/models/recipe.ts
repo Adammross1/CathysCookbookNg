@@ -9,7 +9,6 @@ export interface Recipe {
 export interface RecipeDetail {
   recipeId: number;
   recipeSeqNo: number;
-  ingredientId: number;
   ingredientName: string;
   ingredientClassName: string;
   measurementName: string;

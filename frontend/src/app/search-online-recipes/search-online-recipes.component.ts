@@ -56,7 +56,6 @@ export class SearchOnlineRecipesComponent {
       )
       .subscribe((recipes: any[]) => {
         this.recipesSignal.set(recipes);
-        console.log(recipes);
       });
   };
 }

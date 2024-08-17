@@ -18,7 +18,6 @@ export class MyRecipeComponent {
   protected recipe$ = this.route.paramMap.pipe(
     switchMap((params) => {
       const selectedId = Number(params.get('id'));
-      console.log(selectedId);
       return this.ccRecipesService.getRecipeByID(selectedId);
     })
   );

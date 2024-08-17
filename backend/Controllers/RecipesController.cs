@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using CathysCookbookAPI.Models;
+using Microsoft.Extensions.ObjectPool;
 
 namespace CathysCookbookAPI.Controllers
 {
@@ -8,7 +9,7 @@ namespace CathysCookbookAPI.Controllers
     [ApiController]
     public class RecipesController : ControllerBase
     {
-                private readonly ICookbookRepository _cookbookRepository;
+        private readonly ICookbookRepository _cookbookRepository;
 
         public RecipesController(ICookbookRepository cookbookRepository)
         {
@@ -32,6 +33,8 @@ namespace CathysCookbookAPI.Controllers
                         RecipeClassName = recipeClass?.RecipeClassName,
                         RecipeDetails = recipeDetails.Select(rd => new RecipeDetailDTO
                         {
+                            RecipeId = recipe.RecipeId,
+                            RecipeSeqNo = rd.RecipeSeqNo,
                             IngredientName = _cookbookRepository.GetIngredientNameById(rd.IngredientId).IngredientName,
                             IngredientClassName = _cookbookRepository.GetIngredientClassNameById(rd.IngredientClassId).IngredientClassName,
                             MeasurementName = _cookbookRepository.GetMeasurementNameById(rd.MeasurementId).MeasurementName,
@@ -45,17 +48,39 @@ namespace CathysCookbookAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Recipe> CreateRecipe(Recipe recipe)
+        public ActionResult<FullRecipe> CreateRecipe(FullRecipe fullRecipe)
         {
-            if (recipe == null)
+            Console.WriteLine("POST request received");
+            if (fullRecipe == null)
             {
                 return BadRequest("Recipe cannot be null");
             }
 
-            // Assuming your repository has an AddRecipe method
-            _cookbookRepository.AddRecipe(recipe);
+        var recipe = new Recipe
+        {
+            RecipeId = fullRecipe.RecipeId,
+            RecipeTitle = fullRecipe.RecipeTitle,
+            Instructions = fullRecipe.Instructions,
+            RecipeClassId = _cookbookRepository.GetRecipeClassByName(fullRecipe.RecipeClassName).RecipeClassId
+        };
 
-            // Return the created recipe along with a 201 Created status code
+        _cookbookRepository.AddRecipe(recipe);
+
+        for (int i = 0; i < fullRecipe.RecipeDetails.Count; i++)
+        {
+            var detail = fullRecipe.RecipeDetails[i];
+            var recipeDetail = new RecipeDetail
+        {
+            RecipeId = detail.RecipeId,
+            RecipeSeqNo = detail.RecipeSeqNo,
+            IngredientId = _cookbookRepository.GetIngredientIdByName(detail.IngredientName).IngredientId,
+            IngredientClassId = _cookbookRepository.GetIngredientClassIdByName(detail.IngredientClassName).IngredientClassId,
+            MeasurementId = _cookbookRepository.GetMeasurementIdByName(detail.MeasurementName).MeasurementId,
+            Amount = detail.Amount
+        };
+        _cookbookRepository.AddRecipeDetail(recipeDetail);
+        }
+
             return CreatedAtAction(nameof(Get), new { id = recipe.RecipeId }, recipe);
         }
     }

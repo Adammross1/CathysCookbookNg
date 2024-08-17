@@ -58,7 +58,7 @@
           </tr>
         </thead>
         <tbody>
-          @for (ingredient of data.ingredients; track ingredient.ingredientId) {
+          @for (ingredient of data.ingredients; track ingredient.ingredientName) {
           <tr>
             <td>{{ ingredient.ingredientName }}</td>
             <td>{{ingredient.amount}}</td>

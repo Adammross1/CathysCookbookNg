@@ -104,18 +104,4 @@ export class CcRecipesService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.delete(`${this.apiUrl}/${recipeId}`, { headers });
   }
-
-  // public addRecipeIngredient(
-  //   recipeDetail: RecipeDetail
-  // ): Observable<RecipeDetail> {
-  //   console.log('recipeDetail called', recipeDetail);
-  //   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-  //   return this.http.post<RecipeDetail>(
-  //     `${this.apiUrl}/RecipeDetails`,
-  //     recipeDetail,
-  //     {
-  //       headers: headers,
-  //     }
-  //   );
-  // }
 }

@@ -35,7 +35,7 @@
             </button>
           </div>
           @if ({ingredients: ingredients$ | async}; as data) {
-          <div formControlName="ingredientName" class="ingredients-container">
+          <div class="ingredients-container">
             @for (ingredient of data.ingredients; track ingredient) {
             <div>
               <input type="checkbox" (change)="onCheckboxChange($event, ingredient)">
@@ -50,7 +50,7 @@
           @for (ingredient of recipeIngredientsFormArray.controls; track ingredient; let i = $index) {
           <div [formGroupName]="i">
             <li>{{ ingredient.value.ingredientName }}</li>
-            <select formControlName="ingredientClass" placeholder="Ingredient Class">
+            <select formControlName="ingredientClassName" placeholder="Ingredient Class">
               @if ({ingredientClasses: ingredientClasses$ | async}; as data) {
               <option>Class</option>
               @for(class of data.ingredientClasses; track class) {
@@ -58,7 +58,7 @@
               }
               }
             </select>
-            <select formControlName="unit" placeholder="Unit">
+            <select formControlName="measurementName" placeholder="Unit">
               @if ({measurements: measurements$ | async}; as data) {
               <option>Unit</option>
               @for(measurement of data.measurements; track measurement) {
