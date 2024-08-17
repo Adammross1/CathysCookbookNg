@@ -1,9 +1,10 @@
 <div class="search-tabs-container">
   <div class="search-tabs">
-    <h1>User's Cookbook</h1>
+    <img src="../../assets/svg/logoPurple.svg">
     @for (tab of tabs; track tab) {
-    <button class="search-tab" (click)="selectTab(tab)" [ngClass]="{ selected: tab === (selectedTab$ | async) }">
-      {{ tabsDisplayMap[tab] }}
+    <button class="search-tab" (click)="selectTab(tab)">
+      <img [src]="'../../assets/svg/' + tab + '.svg'" [ngClass]="{ selected: tab === (selectedTab$ | async) }">
+      <p [ngClass]="{ selected: tab === (selectedTab$ | async) }">{{ tabsDisplayMap[tab] }}</p>
     </button>
     }
   </div>
