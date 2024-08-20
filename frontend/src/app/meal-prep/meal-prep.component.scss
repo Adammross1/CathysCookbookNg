@@ -20,7 +20,6 @@
       }
       .align-button-over-input {
         display: flex;
-        flex-direction: row;
         margin-bottom: 2rem;
         input {
           padding: 0.7rem;
@@ -40,7 +39,6 @@
           border: 2px solid #ccc;
           border-radius: 1rem;
           margin-left: -3rem;
-          transition: background-color 300ms ease;
           img {
             width: 1.5rem;
             height: 1.5rem;
@@ -129,7 +127,7 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      width: 100%;
+      width: 85%;
       margin: 1rem 5rem;
       h3 {
         color: $light-purple;
@@ -139,7 +137,7 @@
       p {
         color: $light-purple;
         font-size: 1.25rem;
-        margin: 0.5rem;
+        margin: 0.5rem 1rem;
         font-family: $sans-serif-font;
       }
     }
@@ -185,6 +183,62 @@
             }
           }
         }
+      }
+    }
+    .email {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+      form {
+        display: flex;
+        justify-content: center;
+        input {
+          padding: 0.7rem;
+          width: 20rem;
+          border-radius: 1rem;
+          border: 2px solid #ccc;
+          font-size: 1rem;
+          font-family: $sans-serif-font;
+        }
+        button {
+          width: 4rem;
+          height: 3rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-family: $sans-serif-font;
+          font-size: 1rem;
+          color: #777;
+          background-color: #eee;
+          border: 2px solid #ccc;
+          border-radius: 1rem;
+          margin-left: -3rem;
+          transition: background-color 300ms ease, color 300ms ease;
+          &:hover {
+            background-color: #ccc;
+            cursor: pointer;
+            color: #fff;
+          }
+        }
+      }
+      .download {
+          padding: 0 1rem;
+          margin-left: 1rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-family: $sans-serif-font;
+          font-size: 1rem;
+          color: #777;
+          background-color: #eee;
+          border: 2px solid #ccc;
+          border-radius: 0.7rem;
+          transition: background-color 300ms ease, color 300ms ease;
+          &:hover {
+            background-color: #ccc;
+            cursor: pointer;
+            color: #fff;
+          }
       }
     }
   }

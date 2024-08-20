@@ -1,8 +1,3 @@
-<!-- @if ({ingredients: shoppingList$ | async}; as data) {
-@for (ingredient of data.ingredients; track ingredient) {
-<p>{{ingredient}}</p>
-}
-} -->
 <div class="grid">
   <div class="recipe-select">
     @if ({recipes: myRecipes$ | async}; as data) {
@@ -49,7 +44,7 @@
     }
     @if ({ingredients: shoppingList$ | async}; as data) {
     <div class="table-container">
-      <table>
+      <table #shoppingListTable>
         <thead>
           <tr>
             <th>Ingredient</th>
@@ -58,16 +53,23 @@
           </tr>
         </thead>
         <tbody>
-          @for (ingredient of data.ingredients; track ingredient.ingredientName) {
+          @for (ingredient of data.ingredients; track ingredient.ingredientName; let i = $index) {
           <tr>
-            <td>{{ ingredient.ingredientName }}</td>
-            <td>{{ingredient.amount}}</td>
-            <td>{{ingredient.measurementName}}</td>
+            <td [attr.id]="'ingredient' + i">{{ ingredient.ingredientName }}</td>
+            <td [attr.id]="'amount' + i">{{ingredient.amount}}</td>
+            <td [attr.id]="'unit' + i">{{ingredient.measurementName}}</td>
           </tr>
           }
         </tbody>
       </table>
     </div>
-    }
+  }
+  <div class="email">
+    <form (submit)="sendEmail()">
+      <input type="email" [(ngModel)]="email" name="email" placeholder="example@gmail.com" required>
+      <button type="submit">Export</button>
+    </form>
+    <button class="download" type="button" (click)="generatePDF()">Download Shopping List</button>
+  </div>
   </div>
 </div>
