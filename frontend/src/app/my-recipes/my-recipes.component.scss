@@ -60,7 +60,7 @@
     padding: 2rem;
     .scroll {
       width: 100%;
-      div {
+      .recipe-link {
         display: flex;
         align-items: center;
         a {
@@ -83,7 +83,7 @@
             animation: shine 2s infinite;
           }
         }
-        div {
+        .pill-container {
           text-align: left;
           display: flex;
           flex-direction: row;
@@ -102,10 +102,13 @@
           }
         }
       }
-      p {
-        color: $light-purple;
-        margin: 0 0 1rem 2rem;
-        max-width: 80%;
+      .align-ingredients {
+        display: flex;
+        p {
+          color: $light-purple;
+          margin: 0 0 1rem 1rem;
+          max-width: 80%;
+        }
       }
     }
   }

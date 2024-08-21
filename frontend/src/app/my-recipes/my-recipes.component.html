@@ -12,15 +12,19 @@
   <div class="recipes-container">
     <div class="scroll">
       @for (recipe of data.recipes; track recipe) {
-      <div>
+      <div class="recipe-link">
         <a [routerLink]="['../my-recipe/', recipe.recipeId]" routerLinkActive="activebutton"
           ariaCurrentWhenActive="page">{{
           recipe.recipeTitle }}</a>
-        <div>
+        <div class="pill-container">
           <p class="pill">{{ recipe.recipeClassName }}</p>
         </div>
       </div>
-      <p>{{ recipe.instructions }}</p>
+      <div class="align-ingredients">
+        @for (ingredient of recipe.recipeDetails; track ingredient) {
+        <p>{{ ingredient.ingredientName }}</p>
+        }
+      </div>
       }
     </div>
   </div>
