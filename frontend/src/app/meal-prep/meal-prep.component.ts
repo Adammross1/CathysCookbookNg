@@ -73,6 +73,16 @@ export class MealPrepComponent {
             }
           });
         });
+        shoppingList.sort((a, b) => {
+          if (a.ingredientClassName < b.ingredientClassName) {
+            return -1;
+          }
+          if (a.ingredientClassName > b.ingredientClassName) {
+            return 1;
+          }
+          return 0;
+        });
+
         this.shoppingListString = shoppingList
           .map(
             (ingredient) =>
