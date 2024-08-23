@@ -28,11 +28,6 @@ public partial class CookbookContext : DbContext
     public virtual DbSet<RecipeClass> RecipeClasses { get; set; }
 
     public virtual DbSet<RecipeDetail> RecipeDetails { get; set; }
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<RecipeDetail>()
-            .HasKey(rd => new { rd.RecipeId, rd.RecipeSeqNo });
-    }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlite("Data Source=cookbook.sqlite");
@@ -96,9 +91,8 @@ public partial class CookbookContext : DbContext
 
         modelBuilder.Entity<RecipeDetail>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("recipe_details");
+            entity.HasKey(rd => new { rd.RecipeId, rd.RecipeSeqNo });
+            entity.ToTable("recipe_details");
 
             entity.Property(e => e.IngredientClassId).HasColumnName("IngredientClassID");
             entity.Property(e => e.IngredientId).HasColumnName("IngredientID");

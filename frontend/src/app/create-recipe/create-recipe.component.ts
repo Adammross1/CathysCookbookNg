@@ -205,9 +205,6 @@ export class CreateRecipeComponent implements OnInit {
           measurementName: ingredient.measurementName,
           amount: ingredient.amount,
         };
-        console.log(ingredient);
-        console.log(ingredient.ingredientClassName);
-        console.log(ingredient.measurementName);
         recipeDetails.push(this.recipeDetail);
         recipeSeqNo++;
       }
