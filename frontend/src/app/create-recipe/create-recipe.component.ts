@@ -34,6 +34,8 @@ export class CreateRecipeComponent implements OnInit {
   private selectedIngredientsService = inject(SelectedIngredientsService);
   private formBuilder = inject(FormBuilder);
   private newRecipeId = 0;
+  protected valid = true;
+  protected recipeAdded = false;
 
   private recipe: Recipe = {
     recipeId: 0,
@@ -66,6 +68,7 @@ export class CreateRecipeComponent implements OnInit {
       .subscribe((recipe: Recipe) => {
         this.newRecipeId = recipe.recipeId + 1;
       });
+    this.recipeAdded = false;
   }
 
   // Form
@@ -170,6 +173,7 @@ export class CreateRecipeComponent implements OnInit {
   protected addRecipe = () => {
     this.isSubmitted = true;
     if (this.recipeForm.valid) {
+      this.valid = true;
       this.recipe = {
         recipeId: this.newRecipeId,
         recipeTitle: this.recipeForm.controls.title.value!,
@@ -178,9 +182,11 @@ export class CreateRecipeComponent implements OnInit {
         recipeDetails: this.addRecipeDetails(),
       };
       console.log(this.recipe);
-      this.ccRecipesService.addRecipe(this.recipe).subscribe();
+      this.ccRecipesService.addRecipe(this.recipe);
+      this.recipeAdded = true;
+      this.recipeForm.reset();
     } else {
-      alert('not valid');
+      this.valid = false;
     }
     this.isSubmitted = false;
   };

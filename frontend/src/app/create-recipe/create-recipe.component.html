@@ -79,6 +79,8 @@
 
       <div class="center-content">
         <button type="submit">Submit</button>
+        <p id="valid" [ngClass]="{hidden: valid}">Invalid recipe, please fill out all fields</p>
+        <p id="recipeAdded" [ngClass]="{hidden: !recipeAdded}">Recipe added succesfully</p>
       </div>
     </form>
   </div>

@@ -109,7 +109,6 @@ export class MealPrepComponent {
   }
 
   sendEmail() {
-    // Send the email using EmailJS
     emailjs
       .send(
         'service_upmfo5q',
