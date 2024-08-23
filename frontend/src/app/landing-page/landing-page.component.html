@@ -1,6 +1,6 @@
 <div class="snap-container">
   <div class="hero-container">
-    <video autoplay muted loop id="hero-video">
+    <video autoplay muted loop id="hero-video" preload="auto">
       <source src="../../assets/video/herovid.mp4" type="video/mp4">
     </video>
     <div class="img-container">
@@ -15,13 +15,13 @@
     </div>
 
     <div class="cards">
-      <app-custom-card [imgSrc]="'../../assets/img/wildflowers.png'" [link]="['search']">
+      <app-custom-card [imgSrc]="'../../assets/img/ocean.jpg'" [link]="['search']">
         <span class="title">Search</span>
         <span class="description">Search for new recipes</span>
       </app-custom-card>
 
       <app-custom-card [imgSrc]="'../../assets/img/mountain.jpg'" [link]="['cookbooks']">
-        <span class="title">Cookbooks</span>
+        <span class="title">Cookbook</span>
         <span class="description">Make your own cookbook</span>
       </app-custom-card>
 

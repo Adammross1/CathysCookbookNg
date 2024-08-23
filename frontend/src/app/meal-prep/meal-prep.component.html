@@ -67,9 +67,9 @@
   <div class="email">
     <form (submit)="sendEmail()">
       <input type="email" [(ngModel)]="email" name="email" placeholder="example@gmail.com" required>
-      <button type="submit">Export</button>
+      <button type="submit"><img src="../../assets/svg/mail.svg"></button>
     </form>
-    <button class="download" type="button" (click)="generatePDF()">Download Shopping List</button>
+    <button class="download" type="button" (click)="generatePDF()"><img src="../../assets/svg/download.svg"></button>
   </div>
   </div>
 </div>
