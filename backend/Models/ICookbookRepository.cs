@@ -16,8 +16,10 @@
         Recipe GetRecipeById(int recipeId);
         IEnumerable<RecipeDetail> GetRecipeDetailsByRecipeId(int recipeId);
         void AddRecipe(Recipe recipe);
+        void DeleteRecipe(int id);
         IEnumerable<RecipeDetail> RecipeDetails { get; }
         void AddRecipeDetail(RecipeDetail recipeDetail);
+        void DeleteRecipeDetail(RecipeDetail recipeDetail);
         IEnumerable<RecipeClass> RecipeClasses { get; }
         IEnumerable<MeasurementUnit> Measurements { get; }
     }

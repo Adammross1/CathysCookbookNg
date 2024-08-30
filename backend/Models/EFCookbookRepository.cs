@@ -28,6 +28,25 @@ namespace CathysCookbookAPI.Models
                 Console.WriteLine($"Error adding recipe: {ex.Message}");
             }
         }
+        public void DeleteRecipe(int id)
+        {
+            try
+            {
+                var recipe = _cookbookContext.Recipes.Find(id);
+                if (recipe == null)
+                {
+                    Console.WriteLine("Recipe not found");
+                    return;
+                }
+                _cookbookContext.Recipes.Remove(recipe);
+                _cookbookContext.SaveChanges();
+                Console.WriteLine("Recipe deleted successfully");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting recipe: {ex.Message}");
+            }
+        }
 
         public void AddRecipeDetail(RecipeDetail recipeDetail)
         {
@@ -41,6 +60,29 @@ namespace CathysCookbookAPI.Models
                 Console.WriteLine($"Error adding recipe: {ex.Message}");
             }
         }
+
+        public void DeleteRecipeDetail(RecipeDetail recipeDetail)
+        {
+            try
+            {   
+                if (recipeDetail == null)
+                {
+                    Console.WriteLine("Recipe detail not found");
+                    return;
+                }
+
+                // Remove the recipe detail
+                _cookbookContext.RecipeDetails.Remove(recipeDetail);
+                _cookbookContext.SaveChanges();
+
+                Console.WriteLine("Recipe detail deleted successfully");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting recipe detail: {ex.Message}");
+            }
+        }
+
 
         public RecipeClass GetRecipeClassById(int recipeClassId)
         {

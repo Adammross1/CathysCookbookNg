@@ -182,7 +182,7 @@ export class CreateRecipeComponent implements OnInit {
         recipeDetails: this.addRecipeDetails(),
       };
       console.log(this.recipe);
-      this.ccRecipesService.addRecipe(this.recipe);
+      this.ccRecipesService.addRecipe(this.recipe).subscribe();
       this.recipeAdded = true;
       this.recipeForm.reset();
     } else {

@@ -83,5 +83,27 @@ namespace CathysCookbookAPI.Controllers
 
             return CreatedAtAction(nameof(Get), new { id = recipe.RecipeId }, recipe);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteRecipe(int id)
+        {
+            Console.WriteLine("DELETE request received for ID: " + id);
+            
+            var recipe = _cookbookRepository.GetRecipeById(id);
+            if (recipe == null)
+            {
+                return NotFound();
+            }
+
+            var recipeDetails = _cookbookRepository.GetRecipeDetailsByRecipeId(id);
+            foreach (var detail in recipeDetails)
+            {
+                _cookbookRepository.DeleteRecipeDetail(detail);
+            }
+
+            _cookbookRepository.DeleteRecipe(id);
+
+            return NoContent(); // Return 204 No Content to indicate successful deletion
+        }
     }
 }

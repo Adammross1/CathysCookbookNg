@@ -1,14 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import {
-  BehaviorSubject,
-  catchError,
-  Observable,
-  ReplaySubject,
-  Subject,
-  throwError,
-} from 'rxjs';
-import { Ingredient, Recipe, RecipeDetail } from '../models/recipe';
+import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
+import { Recipe } from '../models/recipe';
 
 @Injectable({
   providedIn: 'root',
@@ -104,19 +97,12 @@ export class CcRecipesService {
   public addRecipe(recipe: Recipe) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     console.log(this.apiUrl + '/Recipes', recipe);
-    return this.http
-      .post(`${this.apiUrl}/Recipes`, recipe, {
-        headers: headers,
-      })
-      .pipe(
-        catchError((error) => {
-          console.error('Error:', error);
-          return throwError(error);
-        })
-      );
+    return this.http.post(`${this.apiUrl}/Recipes`, recipe, {
+      headers: headers,
+    });
   }
   public deleteRecipe(recipeId: number) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.delete(`${this.apiUrl}/${recipeId}`, { headers });
+    return this.http.delete(`${this.apiUrl}/Recipes/${recipeId}`, { headers });
   }
 }

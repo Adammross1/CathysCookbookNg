@@ -110,6 +110,36 @@
           max-width: 80%;
         }
       }
+      #delete {
+        border: 1px solid red;
+        border-radius: .7rem;
+        color: red;
+        background-color: #fff;
+        font-family: $sans-serif-font;
+        padding: 0.5rem 1rem;
+        transition: all ease-in-out 0.4s;
+        &:hover {
+          background-color: red;
+          color: #fff;
+          transition: all ease-in-out 0.4s;
+          cursor: pointer;
+        }
+      }
+      #edit {
+        border: 1px solid $light-purple;
+        border-radius: .7rem;
+        color: $light-purple;
+        background-color: #fff;
+        font-family: $sans-serif-font;
+        padding: 0.5rem 1rem;
+        transition: all ease-in-out 0.4s;
+        &:hover {
+          background-color: $light-purple;
+          color: #fff;
+          transition: all ease-in-out 0.4s;
+          cursor: pointer;
+        }
+      }
     }
   }
 }

@@ -36,4 +36,17 @@ export class MyRecipesComponent {
       }
     })
   );
+
+  protected deleteRecipe = (recipeId: number) => {
+    this.ccRecipesService.deleteRecipe(recipeId).subscribe();
+  };
+  protected verifyDelete = (recipe: Recipe) => {
+    const confirmed = confirm(
+      `Are you sure you want to delete ${recipe.recipeTitle}?`
+    );
+    if (confirmed) {
+      this.deleteRecipe(recipe.recipeId);
+    }
+  };
+  protected editRecipe = (recipeId: number) => {};
 }
