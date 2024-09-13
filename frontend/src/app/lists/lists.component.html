@@ -2,13 +2,24 @@
   <h1>Recipe Collections</h1>
 </div>
 <div class="center-content">
-  <div class="card-container">
-    @if ({lists: lists$ | async}; as data) {
-    @for (list of data.lists; track list.listId) {
-    <a class="list-card">
-      <h3>{{list.listName}}</h3>
-    </a>
-    }
-    }
+  @if ({lists: lists$ | async}; as data) {
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Collection</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (list of data.lists; track list.listId) {
+          <tr>
+            <td>list.listName</td>
+            <td id="delete"><button>Delete</button></td>
+          </tr>
+        }
+      </tbody>
+    </table>
   </div>
+}
 </div>

@@ -96,6 +96,7 @@
         .align-ingredients {
           display: flex;
           flex-wrap: wrap;
+          max-width: 90%;
           p {
             color: $light-purple;
             font-size: 1rem;
@@ -120,8 +121,13 @@
       color: $dark-purple;
       font-family: $serif-font;
       font-weight: bold;
-      margin: 1rem;
-      text-align: center;
+      margin: 2rem 3rem 0.5rem 6rem;
+      text-align: left;
+    }
+    #divider {
+      border-top: 1px solid $dark-purple;
+      width: 70%;
+      margin-left: 5rem;
     }
     .selected-recipes {
       display: flex;
@@ -156,6 +162,7 @@
         border-collapse: collapse;
         font-family: $sans-serif-font;
         thead {
+          font-family: $serif-font;
           position: sticky;
           top: 0;
           background-color: #f5f5f5;
@@ -249,9 +256,9 @@
         background-color: #fff;
         border: 2px solid $dark-purple;
         border-radius: 0.7rem;
-        transition: all .5s ease;
+        transition: all 0.5s ease;
         &:hover {
-          transition: all .5s ease;
+          transition: all 0.5s ease;
           cursor: pointer;
           background-color: $dark-purple;
         }
@@ -259,9 +266,9 @@
           width: 2rem;
           padding: 0.5rem;
           filter: $dark-purple-filter;
-          transition: all .5s ease;
+          transition: all 0.5s ease;
           &:hover {
-            transition: all .5s ease;
+            transition: all 0.5s ease;
             filter: $white-filter;
             -webkit-animation: jello-horizontal 0.9s both;
             animation: jello-horizontal 0.9s both;

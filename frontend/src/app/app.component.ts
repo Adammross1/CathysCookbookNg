@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
     this.ccRecipesService.initializeRecipeClasses();
     this.ccRecipesService.initializeIngredients();
     this.ccRecipesService.initializeIngredientClasses();
+    this.ccRecipesService.initializeCollections();
   }
   title = "Cathy's Cookbook";
 

@@ -1,0 +1,20 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.codeActionsOnSave": {},
+    "auto-run-command.rules": [
+      {
+        "condition": "always",
+        "command": "workbench.action.tasks.runTask",
+        "args": {
+          "task": "Run All"
+        },
+        "message": "Running Cathy's Cookbook"
+      }
+    ]
+  }
+}

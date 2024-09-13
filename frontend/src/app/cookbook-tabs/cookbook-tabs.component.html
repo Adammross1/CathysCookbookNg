@@ -12,6 +12,6 @@
   <div class="search-container">
     @switch (selectedTab$ | async) { @case('myRecipes'){ <app-my-recipes />}
     @case('newRecipe'){ <app-create-recipe /> }
-    @case('cookbooks'){ <app-lists /> } }
+    @case('collections'){ <app-lists /> } }
   </div>
 </div>

@@ -16,6 +16,7 @@ export class CcRecipesService {
   private recipeClassesSubject = new ReplaySubject<any>(1);
   private measurementsSubject = new ReplaySubject<any>(1);
   private recipesSubject = new ReplaySubject<any>(1);
+  private collectionsSubject = new ReplaySubject<any>(1);
   private searchRecipeFilterSubject = new BehaviorSubject<string>('');
   private searchIngredientsFilterSubject = new BehaviorSubject<string>('');
 
@@ -43,6 +44,11 @@ export class CcRecipesService {
   public initializeRecipes(): void {
     this.http.get<any>(`${this.apiUrl}/Recipes`).subscribe((data) => {
       this.recipesSubject.next(data);
+    });
+  }
+  public initializeCollections(): void {
+    this.http.get<any>(`${this.apiUrl}/Collections`).subscribe((data) => {
+      this.collectionsSubject.next(data);
     });
   }
 
@@ -77,6 +83,10 @@ export class CcRecipesService {
 
   public getRecipes(): Observable<any> {
     return this.recipesSubject.asObservable();
+  }
+
+  public getCollections(): Observable<any> {
+    return this.collectionsSubject.asObservable();
   }
 
   public setSearchRecipeFilterSubject = (search: string) => {

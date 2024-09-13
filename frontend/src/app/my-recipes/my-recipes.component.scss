@@ -104,40 +104,41 @@
       }
       .align-ingredients {
         display: flex;
+        flex-wrap: wrap;
         p {
           color: $light-purple;
           margin: 0 0 1rem 1rem;
           max-width: 80%;
         }
       }
-      #delete {
-        border: 1px solid red;
-        border-radius: .7rem;
-        color: red;
+      button {
+        border-radius: 0.7rem;
         background-color: #fff;
         font-family: $sans-serif-font;
-        padding: 0.5rem 1rem;
+        height: 2rem;
+        padding: 0 1rem;
         transition: all ease-in-out 0.4s;
         &:hover {
-          background-color: red;
-          color: #fff;
           transition: all ease-in-out 0.4s;
           cursor: pointer;
         }
       }
+      #delete {
+        border: 1px solid red;
+        color: red;
+        &:hover {
+          background-color: red;
+          color: #fff;
+        }
+      }
       #edit {
+        margin-left: 1rem;
         border: 1px solid $light-purple;
-        border-radius: .7rem;
         color: $light-purple;
-        background-color: #fff;
-        font-family: $sans-serif-font;
-        padding: 0.5rem 1rem;
         transition: all ease-in-out 0.4s;
         &:hover {
           background-color: $light-purple;
           color: #fff;
-          transition: all ease-in-out 0.4s;
-          cursor: pointer;
         }
       }
     }
