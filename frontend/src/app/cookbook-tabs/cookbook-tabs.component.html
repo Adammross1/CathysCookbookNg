@@ -1,12 +1,14 @@
-<div class="search-tabs-container">
-  <div class="search-tabs">
+<div id="search-tabs-container">
+  <div id="sidebar">
     <img src="../../assets/svg/logoPurple.svg">
-    @for (tab of tabs; track tab) {
-    <button class="search-tab" (click)="selectTab(tab)">
-      <img [src]="'../../assets/svg/' + tab + '.svg'" [ngClass]="{ selected: tab === (selectedTab$ | async) }">
-      <p [ngClass]="{ selected: tab === (selectedTab$ | async) }">{{ tabsDisplayMap[tab] }}</p>
-    </button>
-    }
+    <div id="search-tabs">
+      @for (tab of tabs; track tab) {
+      <button id="search-tab" (click)="selectTab(tab)" [ngClass]="{ selected: tab === (selectedTab$ | async) }">
+        <img [src]="'../../assets/svg/' + tab + '.svg'" [ngClass]="{ selected: tab === (selectedTab$ | async) }">
+        <p [ngClass]="{ selected: tab === (selectedTab$ | async) }">{{ tabsDisplayMap[tab] }}</p>
+      </button>
+      }
+    </div>
   </div>
 
   <div class="search-container">
