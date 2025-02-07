@@ -15,6 +15,7 @@ export class SelectedIngredientsService {
 
   public setSelectedIngredientsSubjectAsObservable(ingredient: Ingredient) {
     this.selectedIngredients.push(ingredient);
+    console.log(this.selectedIngredients);
     this.selectedIngredientsSubject.next(this.selectedIngredients);
   }
 

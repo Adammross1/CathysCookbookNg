@@ -5,6 +5,7 @@ import { OnlineRecipeComponent } from './online-recipe/online-recipe.component';
 import { CookbookTabsComponent } from './cookbook-tabs/cookbook-tabs.component';
 import { SearchOnlineRecipesComponent } from './search-online-recipes/search-online-recipes.component';
 import { MyRecipeComponent } from './my-recipe/my-recipe.component';
+import { ScheduleComponent } from './schedule/schedule.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -13,4 +14,5 @@ export const routes: Routes = [
   { path: 'my-recipe/:id', component: MyRecipeComponent },
   { path: 'cookbooks', component: CookbookTabsComponent },
   { path: 'meal-prep', component: MealPrepComponent },
+  { path: 'schedule', component: ScheduleComponent },
 ];

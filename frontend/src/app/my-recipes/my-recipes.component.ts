@@ -15,7 +15,7 @@ import { Recipe } from '../core/models/recipe';
 export class MyRecipesComponent {
   protected ccRecipesService = inject(CcRecipesService);
   protected searchFilter = '';
-  onInputChange(event: Event) {
+  protected onInputChange(event: Event) {
     this.ccRecipesService.setSearchRecipeFilterSubject(
       (event.target as HTMLInputElement).value
     );

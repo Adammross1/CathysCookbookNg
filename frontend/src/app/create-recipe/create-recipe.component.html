@@ -6,11 +6,9 @@
     <form [formGroup]="recipeForm" (submit)="addRecipe(); addRecipeDetails()">
       <div class="main-fields">
         <div>
-          <label for="title">Title:</label>
           <input id="title" formControlName="title" placeholder="Recipe Title">
         </div>
         <div>
-          <label for="recipeClass">Class:</label>
           @if ({classes: recipeClasses$ | async}; as data) {
           <select id="recipeClass" formControlName="recipeClass" placeholder="Recipe Class">
             @for(class of data.classes; track class) {
@@ -20,24 +18,22 @@
           }
         </div>
         <div>
-          <label for="image">Image:</label>
           <input class="image-input" type="file" id="image" formControlName="image">
         </div>
       </div>
 
-      <label>Ingredients</label>
       <div formArrayName="recipeIngredientsFormArray" class="recipe-section">
-        <div class="filter-ingredients">
-          <div class="align-button-over-input">
+        <div id="filter-ingredients">
+          <div id="align-button-over-input">
             <input placeholder="Filter Ingredients" (input)="onInputChange($event)">
             <button type="submit">
               <img src="../../assets/svg/filter.svg" />
             </button>
           </div>
           @if ({ingredients: ingredients$ | async}; as data) {
-          <div class="ingredients-container">
+          <div id="ingredients-container">
             @for (ingredient of data.ingredients; track ingredient) {
-            <div>
+            <div id="ingredient">
               <input type="checkbox" (change)="onCheckboxChange($event, ingredient)">
               <option>{{ ingredient.ingredientName }}</option>
             </div>
@@ -72,7 +68,6 @@
         </div>
       </div>
 
-      <label for="instructions">Instructions</label>
       <div class="center-content">
         <textarea id="instructions" formControlName="instructions" placeholder="Recipe Instructions"></textarea>
       </div>
