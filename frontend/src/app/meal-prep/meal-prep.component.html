@@ -64,13 +64,17 @@
         </tbody>
       </table>
     </div>
-  }
-  <div class="email">
-    <form (submit)="sendEmail()">
-      <input type="email" [(ngModel)]="email" name="email" placeholder="example@gmail.com" required>
-      <button type="submit"><img src="../../assets/svg/mail.svg"></button>
-    </form>
-    <button class="download" type="button" (click)="generatePDF()"><img src="../../assets/svg/download.svg"></button>
-  </div>
+    }
+    <div class="email">
+      <form (submit)="sendEmail()">
+        <input type="email" [(ngModel)]="email" name="email" placeholder="example@gmail.com" required>
+        <button type="submit"><img src="../../assets/svg/mail.svg"></button>
+      </form>
+      <button class="download" type="button" (click)="generatePDF()"><img src="../../assets/svg/download.svg"></button>
+      <button (click)="getMealPrepInstructions()">get response</button>
+    </div>
+    @if ({instructions: mealPrepInstructions$ | async}; as data) {
+    <p>{{ data?.instructions?.text || ''}}</p>
+    }
   </div>
 </div>

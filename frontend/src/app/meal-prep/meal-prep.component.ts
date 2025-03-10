@@ -1,7 +1,7 @@
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { CcRecipesService } from '../core/services/cc-recipes.service';
 import { CommonModule } from '@angular/common';
-import { combineLatest, map } from 'rxjs';
+import { combineLatest, map, firstValueFrom, BehaviorSubject } from 'rxjs';
 import { Ingredient, Recipe, RecipeDetail } from '../core/models/recipe';
 import { SelectedRecipesService } from '../core/services/selected-recipes.service';
 import { ActivatedRoute } from '@angular/router';
@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import emailjs from 'emailjs-com';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { CohereService } from '../core/services/cohere.service';
 
 @Component({
   selector: 'app-meal-prep',
@@ -25,6 +26,7 @@ export class MealPrepComponent {
   private selectedRecipesService = inject(SelectedRecipesService);
   protected route = inject(ActivatedRoute);
   protected http = inject(HttpClient);
+  private cohereService = inject(CohereService);
   protected email: string = '';
   protected searchFilter = '';
   onInputChange(event: Event) {
@@ -108,7 +110,47 @@ export class MealPrepComponent {
     this.selectedRecipesService.removeRecipeFromSelectedRecipes(recipe);
   }
 
+  protected mealPrepInstructions$ = new BehaviorSubject<{ text: string }>({
+    text: '',
+  });
+  protected getMealPrepInstructions = async () => {
+    console.log('called');
+
+    try {
+      const recipes = await firstValueFrom(this.selectedRecipes$);
+
+      const instructionsPrompt = `I need meal preparation instructions for the following recipes: ${recipes
+        .map(
+          (r) =>
+            'title: ' +
+            r.recipeTitle +
+            ' instructions: ' +
+            r.instructions +
+            ' ingredients: ' +
+            r.recipeDetails
+              .map(
+                (ingredient) =>
+                  `${ingredient.ingredientName} - ${ingredient.amount} ${ingredient.measurementName}`
+              )
+              .join(', ')
+        )
+        .join(', ')}
+        please give me the most efficient way possible to prepare all of these recipes together. Thank you.`;
+
+      const instructions = await firstValueFrom(
+        this.cohereService.generateMealPrepInstructions(instructionsPrompt)
+      );
+
+      console.log(instructions);
+
+      this.mealPrepInstructions$.next(instructions);
+    } catch (error) {
+      console.error('Error fetching meal prep instructions:', error);
+    }
+  };
+
   sendEmail() {
+    console.log(this.getMealPrepInstructions());
     emailjs
       .send(
         'service_upmfo5q',
